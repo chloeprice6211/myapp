@@ -2,7 +2,11 @@ import React, { Component, useState } from "react";
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import logo from './mainHeaderLogo.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {ethers} from 'ethers'
+import { ethers } from 'ethers'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Setup from '../pages/Setup'
+import Home from '../pages/Home'
+import Referrals from '../pages/Referrals'
 
 const Header = () => {
 
@@ -15,16 +19,16 @@ const Header = () => {
 		if (window.ethereum && window.ethereum.isMetaMask) {
 			console.log('MetaMask Here!');
 
-			window.ethereum.request({ method: 'eth_requestAccounts'})
-			.then(result => {
-				accountChangedHandler(result[0]);
-				setConnButtonText('Wallet Connected');
-				getAccountBalance(result[0]);
-			})
-			.catch(error => {
-				setErrorMessage(error.message);
-			
-			});
+			window.ethereum.request({ method: 'eth_requestAccounts' })
+				.then(result => {
+					accountChangedHandler(result[0]);
+					setConnButtonText('Wallet Connected');
+					getAccountBalance(result[0]);
+				})
+				.catch(error => {
+					setErrorMessage(error.message);
+
+				});
 
 		} else {
 			console.log('Need to install MetaMask');
@@ -39,13 +43,13 @@ const Header = () => {
 	}
 
 	const getAccountBalance = (account) => {
-		window.ethereum.request({method: 'eth_getBalance', params: [account, 'latest']})
-		.then(balance => {
-			setUserBalance(ethers.utils.formatEther(balance));
-		})
-		.catch(error => {
-			setErrorMessage(error.message);
-		});
+		window.ethereum.request({ method: 'eth_getBalance', params: [account, 'latest'] })
+			.then(balance => {
+				setUserBalance(ethers.utils.formatEther(balance));
+			})
+			.catch(error => {
+				setErrorMessage(error.message);
+			});
 	};
 
 	const chainChangedHandler = () => {
@@ -59,49 +63,59 @@ const Header = () => {
 
 	window.ethereum.on('chainChanged', chainChangedHandler);
 
-    return (
-        <Navbar collapseOnSelect expand="md" bg="white" variant="white">
+	return (
+		<>
+			<Navbar collapseOnSelect expand="md" bg="white" variant="white">
 
-            <Container>
+				<Container>
 
 
 
-                <Navbar.Brand href="/">
-                    <img
-                        src={logo}
-                        height="75"
-                        className="d-inline-block align-top"
-                        alt="BNBgame"
-                    />
-                </Navbar.Brand>
+					<Navbar.Brand href="/">
+						<img
+							src={logo}
+							height="75"
+							className="d-inline-block align-top"
+							alt="BNBgame"
+						/>
+					</Navbar.Brand>
 
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto l-margin-m">
+					<Navbar.Collapse id="responsive-navbar-nav">
+						<Nav className="mr-auto l-margin-m">
 
-						
-                        <Nav.Link href="/">GAME</Nav.Link>
 
-                        <Nav.Link href="/">REFERRALS</Nav.Link>
-                        <Nav.Link href="/">SUPPORT</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
+							<Nav.Link href="/">GAME</Nav.Link>
 
-                <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-                    <Nav className="ml-auto">
-                        <Nav.Link>
-                            <button className="button-nav" onClick={connectWalletHandler}>
-                               SIGN OUT
-                            </button>
-                        </Nav.Link>
+							<Nav.Link href="/referrals">REFERRALS</Nav.Link>
+							<Nav.Link href="/setup">SUPPORT</Nav.Link>
+						</Nav>
+					</Navbar.Collapse>
 
-                    </Nav>
-                </Navbar.Collapse>
+					<Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+						<Nav className="ml-auto">
+							<Nav.Link>
+								<button className="button-nav" onClick={connectWalletHandler}>
+									SIGN OUT
+								</button>
+							</Nav.Link>
 
-            </Container>
-        </Navbar>
-    )
+						</Nav>
+					</Navbar.Collapse>
+
+				</Container>
+			</Navbar>
+
+			<Router>
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/setup' element={<Setup />} />
+					<Route path='/referrals' element={<Referrals />} />
+				</Routes>
+			</Router>
+		</>
+	)
 }
 
 export default Header;
