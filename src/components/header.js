@@ -79,7 +79,10 @@ const Header = () => {
 
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="mr-auto l-margin-m">
+
+						
                         <Nav.Link href="/">GAME</Nav.Link>
+
                         <Nav.Link href="/">REFERRALS</Nav.Link>
                         <Nav.Link href="/">SUPPORT</Nav.Link>
                     </Nav>
