@@ -40,7 +40,10 @@ export default class Plate extends Component {
 
           <div className="plate">
             <img src={plateImage} display="block" />
+            <div className="plate-title-holder">
             <p className="plate-title">10 BNB</p>
+            </div>
+          
             <p className="plate-description">PAYMENTS: 3
               <br/>
               PROFIT 75% PER 1
@@ -51,7 +54,9 @@ export default class Plate extends Component {
 
           <div className="plate">
             <img src={plateImage} display="block" />
+            <div className="plate-title-holder">
             <p className="plate-title">10 BNB</p>
+            </div>
             <p className="plate-description">PAYMENTS: 3
               <br/>
               PROFIT 75% PER 1
@@ -62,7 +67,9 @@ export default class Plate extends Component {
 
           <div className="plate">
             <img src={plateImage} display="block" />
+            <div className="plate-title-holder">
             <p className="plate-title">10 BNB</p>
+            </div>
             <p className="plate-description">PAYMENTS: 3
               <br/>
               PROFIT 75% PER 1
@@ -73,7 +80,9 @@ export default class Plate extends Component {
 
           <div className="plate">
             <img src={plateImage} display="block" />
+            <div className="plate-title-holder">
             <p className="plate-title">10 BNB</p>
+            </div>
             <p className="plate-description">PAYMENTS: 3
               <br/>
               PROFIT 75% PER 1
@@ -84,7 +93,9 @@ export default class Plate extends Component {
 
           <div className="plate">
             <img src={plateImage} display="block" />
+            <div className="plate-title-holder">
             <p className="plate-title">10 BNB</p>
+            </div>
             <p className="plate-description">PAYMENTS: 3
               <br/>
               PROFIT 75% PER 1
@@ -95,7 +106,9 @@ export default class Plate extends Component {
 
           <div className="plate">
             <img src={plateImage} display="block" />
+            <div className="plate-title-holder">
             <p className="plate-title">10 BNB</p>
+            </div>
             <p className="plate-description">PAYMENTS: 3
               <br/>
               PROFIT 75% PER 1
@@ -106,7 +119,9 @@ export default class Plate extends Component {
 
           <div className="plate">
             <img src={plateImage} display="block" />
+            <div className="plate-title-holder">
             <p className="plate-title">10 BNB</p>
+            </div>
             <p className="plate-description">PAYMENTS: 3
               <br/>
               PROFIT 75% PER 1
@@ -117,7 +132,9 @@ export default class Plate extends Component {
 
           <div className="plate">
             <img src={plateImage} display="block" />
+            <div className="plate-title-holder">
             <p className="plate-title">10 BNB</p>
+            </div>
             <p className="plate-description">PAYMENTS: 3
               <br/>
               PROFIT 75% PER 1

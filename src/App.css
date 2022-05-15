@@ -59,6 +59,14 @@
   margin:25px;
   padding:40px;
 }
+.plate-title-holder{
+  height:40px;
+  line-height: 40px;
+}
+.plate:hover .plate-title{
+  font-size:35px;
+  transition: 0.3s;
+}
 .plate-holder{
   display:block;
   justify-content: center;
