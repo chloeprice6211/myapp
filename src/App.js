@@ -8,13 +8,6 @@ function App() {
     <div className="App">
       <Header />
 
-      <Container>
-        <Plate/>
-
-      </Container>
-
-
-
     </div>
   );
 }
