@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Setup from '../pages/Setup'
 import Home from '../pages/Home'
 import Referrals from '../pages/Referrals'
+import { Stack } from "react-bootstrap";
 
 const Header = () => {
 
@@ -114,6 +115,8 @@ const Header = () => {
 					<Route path='/referrals' element={<Referrals />} />
 				</Routes>
 			</Router>
+
+			
 		</>
 	)
 }
