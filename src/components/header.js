@@ -69,7 +69,7 @@ const Header = () => {
                 <Navbar.Brand href="/">
                     <img
                         src={logo}
-                        height="50"
+                        height="75"
                         className="d-inline-block align-top"
                         alt="BNBgame"
                     />
@@ -78,7 +78,7 @@ const Header = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
                 <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="mr-auto">
+                    <Nav className="mr-auto l-margin-m">
                         <Nav.Link href="/">GAME</Nav.Link>
                         <Nav.Link href="/">REFERRALS</Nav.Link>
                         <Nav.Link href="/">SUPPORT</Nav.Link>
