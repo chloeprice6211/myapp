@@ -29,7 +29,11 @@ export default class Setup extends Component {
                       
                     </div>
                     <div></div>
-                    <button className="long-button">CONFIRM</button>
+                    <button className="long-button">
+                      
+                        CONFIRM
+                     
+                        </button>
                 </div>
             </Container>
         )
