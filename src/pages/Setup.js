@@ -21,11 +21,11 @@ export default class Setup extends Component {
                         </div>
                     </div>
                     <div></div>
-                    <div className="plate-l">
+                    <div className="plate" style={{width:"350px"}}>
                   
                             <p className="plate-title-s">REFERRAL</p>
                         
-                        <input type="text" className="form-control"/>
+                        <input type="text" className="form-control" placeHolder="ID" style={{textAlign:"center", borderRadius:"20px", width:"150px", display:"inline-block", fontSize:"35px"}}/>
                       
                     </div>
                     <div></div>
