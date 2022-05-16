@@ -71,6 +71,18 @@
   margin-top:25px;
   padding:50px;
 }
+.plate-xl{
+
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width:550px;
+  height:fit-content;
+  border-radius: 30px;
+  margin-top:25px;
+  padding:50px;
+}
 .plate-title-holder{
   height:40px;
   line-height: 40px;
