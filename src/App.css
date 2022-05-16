@@ -157,6 +157,12 @@ input::-webkit-inner-spin-button {
   width:120px;
   border-radius: 15px;
 }
+.bg-white-button{
+  background-color: white;
+  color:#33c496;
+  font-weight: bolder;
+  margin-top:15px;
+}
 .absolute-img{
     position: absolute;
     height:200px;
@@ -249,4 +255,10 @@ input:not(:focus)::placeholder {
   font-size:20px;
   background-color: white;
   margin-top:75px;
+}
+.green{
+  background-color: #2dbe90;
+}
+.white{
+  color:white;
 }

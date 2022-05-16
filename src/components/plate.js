@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import plateImage from './mainPlateLogo.png'
 import playerCount from './playerCountImage.png'
 import plateBg from './plateBg.png'
+import DonePlate from './purchasedPlate'
 
 
 
@@ -38,32 +39,9 @@ export default class Plate extends Component {
 
           </div>
 
-          <div className="plate">
-            <img src={plateImage} display="block" />
-            <div className="plate-title-holder">
-            <p className="plate-title">10 BNB</p>
-            </div>
-          
-            <p className="plate-description">PAYMENTS: 3
-              <br/>
-              PROFIT 75% PER 1
-            </p>
+         <DonePlate />
 
-            <button className="main-button">BUY</button>
-          </div>
-
-          <div className="plate">
-            <img src={plateImage} display="block" />
-            <div className="plate-title-holder">
-            <p className="plate-title">10 BNB</p>
-            </div>
-            <p className="plate-description">PAYMENTS: 3
-              <br/>
-              PROFIT 75% PER 1
-            </p>
-
-            <button className="main-button">BUY</button>
-          </div>
+         <DonePlate />
 
           <div className="plate">
             <img src={plateImage} display="block" />
