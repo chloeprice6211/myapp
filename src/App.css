@@ -262,3 +262,11 @@ input:not(:focus)::placeholder {
 .white{
   color:white;
 }
+.lvl-div{
+  margin:10px;
+  height:60px;
+  border-radius: 10px;
+  color:white;
+  padding:15px;
+  font-weight: bolder;
+}
