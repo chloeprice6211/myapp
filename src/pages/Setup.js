@@ -25,7 +25,7 @@ export default class Setup extends Component {
                   
                             <p className="plate-title-s">REFERRAL</p>
                         
-                        <input type="number" className="form-control" placeHolder="ID" style={{textAlign:"center",borderRadius:"0px", borderTop:"none",borderLeft:"none", borderRight:"none", borderBottom:"2px solid gray", width:"150px", display:"inline-block", fontSize:"35px", fontWeight:"bolder",color:"#08bd86"}}/>
+                        <input type="number" className="someclass" placeHolder="ID" style={{textAlign:"center",borderRadius:"0px", borderTop:"none",borderLeft:"none", borderRight:"none", borderBottom:"2px solid gray", width:"150px", display:"inline-block", fontSize:"35px", fontWeight:"bolder",color:"#08bd86"}}/>
                       
                     </div>
                     <div></div>

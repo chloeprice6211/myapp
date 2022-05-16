@@ -231,5 +231,11 @@ input::-webkit-inner-spin-button {
   font-weight: bolder;
   transition: 0.2s;
 }
-
+.someclass:focus, input:focus{
+  outline: none;
+}
+input:focus::placeholder {
+  color: transparent;
+  transition: 0.2s;
+}
 
