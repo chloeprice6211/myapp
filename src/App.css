@@ -195,5 +195,32 @@
   margin-top:30px;
   border-radius:20px;
 }
+.plate-l:hover img{
+  height:250px;
+  transition:0.2s;
+}
+.plate-l:not(:hover) img{
+  height:200px;
+  transition:0.2s;
+}
+.plate-l:hover{
+  background-color: #4ad8ab;
+  transition:0.2s;
+  cursor: pointer;
+}
+.plate-l:not(:hover){
+  background-color: white;
+  transition:0.2s;
+}
+.plate-l:hover p{
+  color: white;
+  transition:0.2s;
+  font-size:20px;
+}
+.plate-l:not(:hover) p{
+  color: black;
+  transition:0.2s;
+  font-size:25px;
+}
 
 

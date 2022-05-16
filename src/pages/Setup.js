@@ -12,7 +12,10 @@ export default class Setup extends Component {
                 <div className="plate-holder">
 
                     <div className="plate-l">
+                        <div style={{height:"230px"}}>
                         <img src={MetamaskLogo} display="block" height="200" />
+                        </div>
+                       
                         <div className="plate-title-holder">
                             <p className="plate-title-s">CONNECT METAMASK</p>
                         </div>
