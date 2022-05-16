@@ -21,19 +21,22 @@ export default class Referrals extends Component {
                 <div></div>
                 <div className="plate-xl">
                     <p className="plate-title" style={{
-                        marginTop:"0px"
+                        marginTop:"0px",
+                        textAlign:"left",
+                        fontSize:"20px"
                     }}> REFERRAL PROGRAM</p>
                     <p style={{
                         color:"#525252",
                         fontFamily:"Calibri",
-                        fontSize:"20px",
-                        textAlign:"justify"
+                        fontSize:"23px",
+                        textAlign:"justify",
+                        marginTop:"30px"
                     }}>
                    Get <span style={{color:"#11d1a4", fontWeight:"bolder"}}>18%</span> per referral registered under your ID. You will also be rewarded with <span style={{color:"#11d1a4", fontWeight:"bolder"}}>0.015 BNB</span> per each. Payout is made with each purshase of listings. The duration of payments - unlimited.
 
 
                     </p>
-                    <input type="text" readonly class="form-control" value="some referral link" style={{borderRadius:"10px", textAlign:"center", display:"inline", width:"300px", fontSize:"20px"}}/>
+                    <input type="text" readonly class="form-control" value="some referral link" style={{borderRadius:"10px", marginTop:"30px", textAlign:"center", display:"inline", width:"300px", fontSize:"20px"}}/>
                     <button className="main-button" style={{
                         marginLeft:"20px",
                         height:"45px"
