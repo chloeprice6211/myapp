@@ -17,6 +17,9 @@ input::-webkit-inner-spin-button {
   }
 }
 
+.nav-link{
+  margin:10px;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -170,11 +173,6 @@ input::-webkit-inner-spin-button {
   text-decoration: none;
   color:#5c5c5c;
   font-weight:bolder;
-}
-.nav-link:hover{
-  color:#33c496;
-  font-size:18px;
-  transition: 0.2s;
 }
 .l-margin-m{
   margin-left:50px;

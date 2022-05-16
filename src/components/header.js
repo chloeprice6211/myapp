@@ -1,6 +1,7 @@
 import React, { Component, useState } from "react";
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import logo from './mainHeaderLogo.png'
+import telegram from './telegram.png'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ethers } from 'ethers'
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -84,13 +85,19 @@ const Header = () => {
 					<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 
 					<Navbar.Collapse id="responsive-navbar-nav">
-						<Nav className="mr-auto l-margin-m">
+						<Nav className="mr-auto">
+
+							<Nav.Link href="/" style={{lineHeight:"80px"}}>GAME</Nav.Link>
+							<Nav.Link href="/referrals" style={{lineHeight:"80px"}}>REFERRALS</Nav.Link>
+							<Nav.Link href="/setup" style={{lineHeight:"80px"}}>SUPPORT</Nav.Link>
+							<Nav.Link href="/setup" style={{lineHeight:"50px"}}>
+							<img src={telegram} style={{
+								height:"60px",
+								marginTop:"10px"
+							}} />
+							</Nav.Link>
 
 
-							<Nav.Link href="/">GAME</Nav.Link>
-
-							<Nav.Link href="/referrals">REFERRALS</Nav.Link>
-							<Nav.Link href="/setup">SUPPORT</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
 
