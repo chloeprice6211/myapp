@@ -242,3 +242,6 @@ input:not(:focus)::placeholder {
   font-size:30px;
   transition: 0.2s;
 }
+.someclass:focus{
+  border-bottom:2px solid black;
+}
