@@ -12,7 +12,8 @@ export default class Setup extends Component {
             <div style={{ 
                 backgroundImage: `url(${bg})`,
                 backgroundRepeat: 'no-repeat',
-                backgroundSize:"500px"
+                backgroundSize:"900px"
+
               }}>
             <Container>
                 <div className="plate-holder">
