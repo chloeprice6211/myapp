@@ -235,7 +235,10 @@ input::-webkit-inner-spin-button {
   outline: none;
 }
 input:focus::placeholder {
-  color: transparent;
+  font-size:0px;
   transition: 0.2s;
 }
-
+input:not(:focus)::placeholder {
+  font-size:30px;
+  transition: 0.2s;
+}
