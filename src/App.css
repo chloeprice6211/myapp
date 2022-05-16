@@ -81,7 +81,7 @@ input::-webkit-inner-spin-button {
   justify-content: center;
   align-items: center;
   background-color: white;
-  width:550px;
+  width:fit-content;
   height:fit-content;
   border-radius: 30px;
   margin-top:25px;
