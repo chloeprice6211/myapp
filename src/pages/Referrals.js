@@ -84,9 +84,9 @@ export default class Referrals extends Component {
                         }}>COPY</button>
                     </div>
 
-                    <div style={{ display: "flex", justifyContent: "center" }}>
+                    <div style={{ display: "flex", justifyContent: "center", height:"50px"}}>
 
-                        <div id="copyAlert" hidden class="alert alert-success" role="alert" style={{ width: "300px",marginTop:"35px", borderRadius:"20px" }}>
+                        <div id="copyAlert" hidden class="alert alert-success" role="alert" style={{ width: "300px",marginTop:"20px", borderRadius:"20px", position:"absolute" }}>
                             Referral link copied to clipboard
                         </div>
 

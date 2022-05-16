@@ -4,8 +4,6 @@ import playerCount from './playerCountImage.png'
 import plateBg from './plateBg.png'
 import DonePlate from './purchasedPlate'
 
-
-
 export default class Plate extends Component {
   render() {
     return (
@@ -79,7 +77,7 @@ export default class Plate extends Component {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" >BUY</button>
           </div>
 
           <div className="plate">

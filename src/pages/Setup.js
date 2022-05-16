@@ -1,8 +1,14 @@
-import React, { Component } from 'react'
+
 import '../App.css';
-import { Container, Stack } from 'react-bootstrap'
 import MetamaskLogo from '../components/metamaskLogo.png'
 import bg from '../components/bg.png'
+import React, { Component, useState } from "react";
+import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { ethers } from 'ethers'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+
 
 export default class Setup extends Component {
 
