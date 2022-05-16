@@ -2,12 +2,18 @@ import React, { Component } from 'react'
 import '../App.css';
 import { Container, Stack } from 'react-bootstrap'
 import MetamaskLogo from '../components/metamaskLogo.png'
+import bg from '../components/bg.png'
 
 export default class Setup extends Component {
 
     render() {
 
         return (
+            <div style={{ 
+                backgroundImage: `url(${bg})`,
+                backgroundRepeat: 'no-repeat',
+                backgroundSize:"500px"
+              }}>
             <Container>
                 <div className="plate-holder">
 
@@ -36,6 +42,7 @@ export default class Setup extends Component {
                         </button>
                 </div>
             </Container>
+            </div>
         )
     }
 }
