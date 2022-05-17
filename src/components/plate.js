@@ -19,6 +19,7 @@ const Plate = () => {
   const handleInput = (price) =>{
    
     console.log(price);
+    return <DonePlate />
   }
 
   
@@ -82,7 +83,7 @@ const Plate = () => {
 
             <button className="main-button" onClick={() => handleInput(0.07)}>BUY</button>
           </div>
-
+          
 
           <div className="plate">
             <img src={plateImage} display="block" />
