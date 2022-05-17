@@ -10,6 +10,11 @@ import coin from './whiteCoin.png'
 import { ProgressBar } from 'react-bootstrap';
 
 const Plate = () => {
+  const [errorMessage, setErrorMessage] = useState(null);
+	const [defaultAccount, setDefaultAccount] = useState(null);
+	const [userBalance, setUserBalance] = useState(null);
+	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
+
   const handleSubmit = async () => {
     const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -25,6 +30,35 @@ const Plate = () => {
     turnoverText.textContent = turnover;
   }
 
+  const checkWalletConnection = () => {
+    window.ethereum.request({ method: 'eth_requestAccounts' })
+				.then(result => {
+					accountChangedHandler(result[0]);
+					setConnButtonText('Wallet Connected');
+					getAccountBalance(result[0]);
+				})
+				.catch(error => {
+					setErrorMessage(error.message);
+				});
+
+    console.log(userBalance);
+  }
+
+  const accountChangedHandler = (newAccount) => {
+		setDefaultAccount(newAccount);
+		getAccountBalance(newAccount.toString());
+	}
+
+  const getAccountBalance = (account) => {
+		window.ethereum.request({ method: 'eth_getBalance', params: [account, 'latest'] })
+			.then(balance => {
+				setUserBalance(ethers.utils.formatEther(balance));
+			})
+			.catch(error => {
+				setErrorMessage(error.message);
+			});
+	};
+
   const handleInput = (parameter) => (event) => {
     var parentElement = event.target.parentNode;
     var mainEl = document.createElement("div");
@@ -36,6 +70,7 @@ const Plate = () => {
 
 }
 
+  window.onload = checkWalletConnection();
   window.onload = handleSubmit();
 
   return (
