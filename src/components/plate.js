@@ -7,14 +7,23 @@ import { render } from '@testing-library/react'
 import { ethers } from 'ethers'
 import erc20abi from "../erc20ABI.json"
 
+
+
 const Plate = () => {
   const [contractInfo, setContractInfo] = useState({
     totalUsers: "-",
     turnover: "-",
     transactions: "-"
   });
+   
+  const handleInput = (price) =>{
+   
+    console.log(price);
+  }
 
+  
   return(
+    
     <div className="plate-holder">
 
           <div>
@@ -58,7 +67,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button" id="checkButton">BUY</button>
+            <button className="main-button" id="checkButton" onClick={() => handleInput(0.05)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -71,7 +80,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(0.07)}>BUY</button>
           </div>
 
 
@@ -85,7 +94,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button" >BUY</button>
+            <button className="main-button" onClick={() => handleInput(0.1)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -98,7 +107,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(0.14)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -111,7 +120,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(0.2)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -124,7 +133,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(0.28)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -137,7 +146,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(0.4)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -150,7 +159,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(0.55)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -163,7 +172,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(0.8)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -176,7 +185,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(1.1)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -189,7 +198,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(1.6)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -202,7 +211,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(2.2)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -215,7 +224,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(3.2)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -228,7 +237,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(4.4)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -241,7 +250,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(6.5)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -254,7 +263,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(8)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -267,7 +276,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(10)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -280,7 +289,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(12.5)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -293,7 +302,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(16)}>BUY</button>
           </div>
 
           <div className="plate">
@@ -306,7 +315,7 @@ const Plate = () => {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" onClick={() => handleInput(20)}>BUY</button>
           </div>
 
 
