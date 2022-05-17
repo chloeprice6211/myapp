@@ -1,13 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import plateImage from './mainPlateLogo.png'
 import playerCount from './playerCountImage.png'
 import plateBg from './plateBg.png'
 import DonePlate from './purchasedPlate'
+import { render } from '@testing-library/react'
+import { ethers } from 'ethers'
+import erc20abi from "C:/Users/31082/Documents/GitHub/myapp/src/erc20ABI.json"
 
-export default class Plate extends Component {
-  render() {
-    return (
-      <div className="plate-holder">
+const Plate = () => {
+  const [contractInfo, setContractInfo] = useState({
+    totalUsers: "-",
+    turnover: "-",
+    transactions: "-"
+  });
+
+  return(
+    <div className="plate-holder">
 
           <div>
 
@@ -50,7 +58,7 @@ export default class Plate extends Component {
               INCOME 80% PER 1
             </p>
 
-            <button className="main-button">BUY</button>
+            <button className="main-button" id="checkButton">BUY</button>
           </div>
 
           <div className="plate">
@@ -303,6 +311,7 @@ export default class Plate extends Component {
 
 
         </div>
-    )
-  }
+  )
 }
+
+export default Plate;
