@@ -1,12 +1,11 @@
-
 import '../App.css';
 import MetamaskLogo from '../components/metamaskLogo.png'
 import bg from '../components/bg.png'
-import React, { Component, useState } from "react";
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ethers } from 'ethers'
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Navigate } from 'react-router-dom'
 
 const Setup = () => {
 
@@ -26,6 +25,7 @@ const Setup = () => {
 					setConnButtonText('Wallet Connected');
 					getAccountBalance(result[0]);
                     button.disabled = false;
+                    button.addEventListener('click', register);
 				})
 				.catch(error => {
 					setErrorMessage(error.message);
@@ -59,6 +59,10 @@ const Setup = () => {
 		window.location.reload();
 	}
 
+    const register = () => {
+        window.location.href = "/";
+    }
+
 
 	// listen for account changes
 	window.ethereum.on('accountsChanged', accountChangedHandler);
@@ -73,9 +77,9 @@ const Setup = () => {
 
           }}>
         <Container>
-            <div className="plate-holder" onClick={connectWalletHandler}>
+            <div className="plate-holder">
 
-                <div className="plate-l">
+                <div className="plate-l" onClick={connectWalletHandler}>
                     <div style={{height:"230px"}}>
                     <img src={MetamaskLogo} display="block" height="200" />
                     </div>
@@ -93,7 +97,8 @@ const Setup = () => {
                   
                 </div>
                 <div></div>
-                <button className="long-button" id="confirmButton" a href="/" disabled>
+                <button className="long-button" id="confirmButton" onClick={register} disabled>
+                    
                     CONFIRM
                  
                     </button>

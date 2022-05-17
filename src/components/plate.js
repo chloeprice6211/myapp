@@ -5,7 +5,7 @@ import plateBg from './plateBg.png'
 import DonePlate from './purchasedPlate'
 import { render } from '@testing-library/react'
 import { ethers } from 'ethers'
-import erc20abi from "C:/Users/31082/Documents/GitHub/myapp/src/erc20ABI.json"
+import erc20abi from "../erc20ABI.json"
 
 const Plate = () => {
   const [contractInfo, setContractInfo] = useState({

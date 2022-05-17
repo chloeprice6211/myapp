@@ -9,6 +9,8 @@ import Setup from '../pages/Setup'
 import Home from '../pages/Home'
 import Referrals from '../pages/Referrals'
 import { Stack } from "react-bootstrap";
+import { Navigate } from 'react-router-dom'
+import { useMetaMask } from "metamask-react";
 
 const Header = () => {
 
@@ -16,6 +18,11 @@ const Header = () => {
 	const [defaultAccount, setDefaultAccount] = useState(null);
 	const [userBalance, setUserBalance] = useState(null);
 	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
+	const { status, connect, account, chainId, ethereum } = useMetaMask();
+
+	const disconnectWallet = () => {
+        return <Navigate to="/setup" />
+    }
 
 	const connectWalletHandler = () => {
 		if (window.ethereum && window.ethereum.isMetaMask) {
@@ -104,7 +111,7 @@ const Header = () => {
 					<Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
 						<Nav className="ml-auto">
 							<Nav.Link>
-								<button className="button-nav" onClick={connectWalletHandler}>
+								<button className="button-nav" onClick={disconnectWallet}>
 									SIGN OUT
 								</button>
 							</Nav.Link>

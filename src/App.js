@@ -8,13 +8,15 @@ import Fotter from './components/footer'
 import DonePlate from './components/purchasedPlate'
 import { ethers } from 'ethers'
 import { Redirect } from "react-router"
+import $ from "jquery"
 
 function App() {
+
   return (
     <div className="App">
-      <Header/>
-      
-      <Fotter/>
+      <Header />
+
+      <Fotter />
     </div>
   );
 }
