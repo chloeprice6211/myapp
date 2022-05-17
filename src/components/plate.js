@@ -7,21 +7,29 @@ import { render } from '@testing-library/react'
 import { ethers } from 'ethers'
 import erc20abi from "../erc20ABI.json"
 
-
-
 const Plate = () => {
-  const [contractInfo, setContractInfo] = useState({
-    totalUsers: "-",
-    turnover: "-",
-    transactions: "-"
-  });
-   
+  const handleSubmit = async () => {
+    const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
+
+    const globalstatistics = await erc20.getGlobalStatistic();
+    var usersCount = globalstatistics[0] / Math.pow(10, 0);
+    var turnover = globalstatistics[2] / Math.pow(10, 18);
+    const usersText = document.getElementById("totalPlayerCountP");
+    usersText.textContent = usersCount;
+    const turnoverText = document.getElementById("totalBNBIncomeP");
+    turnoverText.textContent = turnover;
+  }
+
   const handleInput = (price) =>{
    
     console.log(price);
   }
 
-  
+  window.onload = handleSubmit();
+
   return(
     
     <div className="plate-holder">
