@@ -11,9 +11,71 @@ import { ProgressBar } from 'react-bootstrap';
 
 const Plate = () => {
   const [errorMessage, setErrorMessage] = useState(null);
-	const [defaultAccount, setDefaultAccount] = useState(null);
-	const [userBalance, setUserBalance] = useState(null);
-	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
+  const [defaultAccount, setDefaultAccount] = useState(null);
+  const [userBalance, setUserBalance] = useState(null);
+  const [connButtonText, setConnButtonText] = useState('Connect Wallet');
+  const isPurchased = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+  const levels = {
+    "0.05": 0,
+    "0.07": 1,
+    "0.1": 2,
+    "0.14": 3,
+    "0.2": 4,
+    "0.28": 5,
+    "0.4": 6,
+    "0.55": 7,
+    "0.8": 8,
+    "1,1": 9,
+    "1.6": 10,
+    "2,2": 11,
+    "3.2": 12,
+    "4.4": 13,
+    "6.5": 14,
+    "8": 15,
+    "10": 16,
+    "12.5": 17,
+    "16": 18,
+    "20": 19
+  }
+
+
+
+  const testRender = (costValue) => {
+    if (isPurchased[levels[costValue]] == 1) {
+      return (<div className="plate green">
+        <img src={coin} style={{ height: "50px" }} />
+        <div style={{ height: "50px" }}>
+          <p className="plate-title white">10 BNB</p>
+        </div>
+
+        <p className="plate-description white">PAYMENTS: 3<br />
+          INCOME - 75% PER 1</p>
+
+        <ProgressBar animated now={45} variant="info" style={{ border: "2px solid white", height: "25px", borderRadius: "20px" }} />
+
+        <button className="main-button green bg-white-button" style={{ color: "##27c59e", backgroundColor: "white" }}>UPGRADE</button>
+
+      </div>)
+    }
+    else {
+      return (<div className="plate">
+        <img src={plateImage} display="block" />
+        <div className="plate-title-holder">
+          <p className="plate-title">{costValue} BNB</p>
+        </div>
+        <p className="plate-description">PAYMENTS: 2
+          <br />
+          INCOME 80% PER 1
+        </p>
+
+        <button className="main-button" onClick={handleInput(costValue)}>BUY</button>
+      </div>)
+    }
+
+  }
+
+
 
   const handleSubmit = async () => {
     const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
@@ -32,43 +94,41 @@ const Plate = () => {
 
   const checkWalletConnection = () => {
     window.ethereum.request({ method: 'eth_requestAccounts' })
-				.then(result => {
-					accountChangedHandler(result[0]);
-					setConnButtonText('Wallet Connected');
-					getAccountBalance(result[0]);
-				})
-				.catch(error => {
-					setErrorMessage(error.message);
-				});
+      .then(result => {
+        accountChangedHandler(result[0]);
+        setConnButtonText('Wallet Connected');
+        getAccountBalance(result[0]);
+      })
+      .catch(error => {
+        setErrorMessage(error.message);
+      });
 
     console.log(userBalance);
   }
 
   const accountChangedHandler = (newAccount) => {
-		setDefaultAccount(newAccount);
-		getAccountBalance(newAccount.toString());
-	}
+    setDefaultAccount(newAccount);
+    getAccountBalance(newAccount.toString());
+  }
 
   const getAccountBalance = (account) => {
-		window.ethereum.request({ method: 'eth_getBalance', params: [account, 'latest'] })
-			.then(balance => {
-				setUserBalance(ethers.utils.formatEther(balance));
-			})
-			.catch(error => {
-				setErrorMessage(error.message);
-			});
-	};
+    window.ethereum.request({ method: 'eth_getBalance', params: [account, 'latest'] })
+      .then(balance => {
+        setUserBalance(ethers.utils.formatEther(balance));
+      })
+      .catch(error => {
+        setErrorMessage(error.message);
+      });
+  };
 
   const handleInput = (parameter) => (event) => {
-    var parentElement = event.target.parentNode;
-    var mainEl = document.createElement("div");
-    mainEl.style.height = "200";
-    mainEl.style.width="200";
-    mainEl.style.backgroundColor = "black";
+    var id = levels[parameter]
+    isPurchased[id] = 1;
 
-    parentElement.after(mainEl);
+    alert(id)
 
-}
+    alert(isPurchased)
+  }
 
   window.onload = checkWalletConnection();
   window.onload = handleSubmit();
@@ -94,6 +154,7 @@ const Plate = () => {
 
         </div>
 
+
         <div className="plate plate-long">
 
           <img className="long-plate-image" src={playerCount} height="50" display="inline" />
@@ -108,285 +169,82 @@ const Plate = () => {
 
       </div>
 
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">0.05 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
+      {
+        testRender(0.05)
+      }
 
-        <button className="main-button" id="checkButton" onClick={() => handleInput(0.05)}>BUY</button>
-      </div>
+      {
+        testRender(0.07)
+      }
 
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">0.07 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
+      {
+        testRender(0.1)
+      }
 
-        <button value={0.07} className="main-button" onClick={handleInput(15)}>BUY</button>
-      </div>
+      {
+        testRender(0.14)
+      }
 
+      {
+        testRender(0.2)
+      }
 
-      {/* main */}
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">0.1 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
+      {
+        testRender(0.28)
+      }
 
-        <button className="main-button" onClick={(e) => {
-      this.handleInput(e, 15);
-   }}>BUY</button>
-      </div>
-      {/* purchased */}
-      <div collapsed className="plate green">
-                    <img src={coin} style={{ height: "50px" }} />
-                    <div style={{height:"50px"}}>
-                    <p className="plate-title white">10 BNB</p>
-                    </div>
+      {
+        testRender(0.4)
+      }
 
-                    <p className="plate-description white">PAYMENTS: 3<br/>
-                    INCOME - 75% PER 1</p>
+      {
+        testRender(0.55)
+      }
 
-                    <ProgressBar animated now={45} variant="info" style={{border:"2px solid white", height:"25px", borderRadius:"20px"}} />
+      {
+        testRender(0.8)
+      }
 
-                    <button className="main-button green bg-white-button" style={{color:"##27c59e", backgroundColor:"white"}}>UPGRADE</button>
+      {
+        testRender(1.1)
+      }
 
-                </div>
-      
+      {
+        testRender(1.6)
+      }
 
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">0.14 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
+      {
+        testRender(2.2)
+      }
 
-        <button className="main-button" onClick={() => handleInput(0.14)}>BUY</button>
-      </div>
+      {
+        testRender(3.2)
+      }
 
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">0.2 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
+      {
+        testRender(4.4)
+      }
 
-        <button className="main-button" onClick={() => handleInput(0.2)}>BUY</button>
-      </div>
+      {
+        testRender(6.5)
+      }
 
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">0.28 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
+      {
+        testRender(8)
+      }
+      {
+        testRender(10)
+      }
+      {
+        testRender(12.5)
+      }
+      {
+        testRender(16)
+      }
+      {
+        testRender(20)
+      }
 
-        <button className="main-button" onClick={() => handleInput(0.28)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">0.4 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(0.4)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">0.55 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(0.55)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">0.8 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(0.8)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">1.1 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(1.1)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">1.6 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(1.6)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">2.2 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(2.2)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">3.2 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(3.2)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">4.4 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(4.4)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">6.5 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(6.5)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">8 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(8)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">10 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(10)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">12.5 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(12.5)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">16 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(16)}>BUY</button>
-      </div>
-
-      <div className="plate">
-        <img src={plateImage} display="block" />
-        <div className="plate-title-holder">
-          <p className="plate-title">20 BNB</p>
-        </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
-          INCOME 80% PER 1
-        </p>
-
-        <button className="main-button" onClick={() => handleInput(20)}>BUY</button>
-      </div>
 
 
     </div>
