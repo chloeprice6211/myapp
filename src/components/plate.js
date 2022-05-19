@@ -14,7 +14,7 @@ const Plate = () => {
   const [defaultAccount, setDefaultAccount] = useState(null);
   const [userBalance, setUserBalance] = useState(null);
   const [connButtonText, setConnButtonText] = useState('Connect Wallet');
-  const isPurchased = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  const isPurchased = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
   const levels = {
     "0.05": 0,
@@ -51,8 +51,8 @@ const Plate = () => {
           <p className="plate-title white">{costValue} BNB</p>
         </div>
 
-        <p className="plate-description white">PAYMENTS: 3<br />
-          INCOME - 75% PER 1</p>
+        <p className="plate-description white">PAYMENTS: 2<br />
+          INCOME - 80% PER 1</p>
 
         <ProgressBar animated now={45} variant="info" style={{ border: "2px solid white", height: "25px", borderRadius: "20px" }} />
 
@@ -77,7 +77,15 @@ const Plate = () => {
 
   }
 
+  const getUserLevelsInfo = async () => {
+    const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
+    const userAddres = "0xB7281943d754B28F38813dc4F9c8560F06E4D0B0";
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
 
+    const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
+    const levelsInfo = await erc20.getUserLevels(userAddres);
+    console.log(levelsInfo[0][1]);
+  }
 
   const handleSubmit = async () => {
     const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
@@ -141,6 +149,7 @@ const Plate = () => {
   
   }
 
+  window.onload = getUserLevelsInfo();
   window.onload = checkWalletConnection();
   window.onload = handleSubmit();
 

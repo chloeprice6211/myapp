@@ -14,8 +14,8 @@ export default class purchasedPlate extends Component {
                     <p className="plate-title white">10 BNB</p>
                     </div>
 
-                    <p className="plate-description white">PAYMENTS: 3<br/>
-                    INCOME - 75% PER 1</p>
+                    <p className="plate-description white">PAYMENTS: 2<br/>
+                    INCOME - 80% PER 1</p>
 
                     <ProgressBar animated now={45} variant="info" style={{border:"2px solid white", height:"25px", borderRadius:"20px"}} />
 
