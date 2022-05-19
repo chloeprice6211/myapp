@@ -14,7 +14,7 @@ const Plate = () => {
   const [defaultAccount, setDefaultAccount] = useState(null);
   const [userBalance, setUserBalance] = useState(null);
   const [connButtonText, setConnButtonText] = useState('Connect Wallet');
-  const isPurchased = [1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+  const isPurchased = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
   const levels = {
     "0.05": 0,
@@ -42,8 +42,10 @@ const Plate = () => {
 
 
   const testRender = (costValue) => {
+
     if (isPurchased[levels[costValue]] == 1) {
-      return (<div className="plate green">
+      return (
+      <div className="plate green">
         <img src={coin} style={{ height: "50px" }} />
         <div style={{ height: "50px" }}>
           <p className="plate-title white">{costValue} BNB</p>
@@ -123,11 +125,20 @@ const Plate = () => {
 
   const handleInput = (parameter) => (event) => {
     var id = levels[parameter]
-    isPurchased[id] = 1;
 
-    alert(id)
+ 
 
-    alert(isPurchased)
+
+    if(isPurchased[id-1]!=0 || id == 0){
+      isPurchased[id] = 1;
+
+      alert("purchased")
+
+    }
+    else{
+      alert("buyprevious")
+    }
+  
   }
 
   window.onload = checkWalletConnection();
