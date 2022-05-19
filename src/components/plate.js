@@ -14,7 +14,7 @@ const Plate = () => {
   const [defaultAccount, setDefaultAccount] = useState(null);
   const [userBalance, setUserBalance] = useState(null);
   const [connButtonText, setConnButtonText] = useState('Connect Wallet');
-  const isPurchased = [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  const isPurchased = [1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
 
   const levels = {
     "0.05": 0,
@@ -46,7 +46,7 @@ const Plate = () => {
       return (<div className="plate green">
         <img src={coin} style={{ height: "50px" }} />
         <div style={{ height: "50px" }}>
-          <p className="plate-title white">10 BNB</p>
+          <p className="plate-title white">{costValue} BNB</p>
         </div>
 
         <p className="plate-description white">PAYMENTS: 3<br />
