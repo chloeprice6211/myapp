@@ -62,8 +62,9 @@ const Plate = () => {
             <p className="plate-title white">{costValue} BNB</p>
           </div>
 
-          <p className="plate-description white">PAYMENTS: 2<br />
-            INCOME - 80% PER 1</p>
+          <p className="plate-description white">PAYMENTS: 2</p>
+          <p className="plate-description white">INCOME 80% PER 1</p>
+         
 
           <ProgressBar animated now={45} variant="info" style={{ border: "2px solid white", height: "25px", borderRadius: "20px" }} />
 
@@ -77,8 +78,8 @@ const Plate = () => {
         <div className="plate-title-holder">
           <p className="plate-title">{costValue} BNB</p>
         </div>
-        <p className="plate-description">PAYMENTS: 2
-          <br />
+        <p className="plate-description">PAYMENTS: 2</p>
+          <p  className="plate-description">
           INCOME 80% PER 1
         </p>
 
@@ -154,7 +155,44 @@ const Plate = () => {
     if (isPurchased[id - 1] != 0 || id == 0) {
       isPurchased[id] = 1;
 
-      alert("purchased")
+      var plate = event.target.parentNode;
+      var mainTitleParagraph = document.createElement("p");
+      var payoutDescription = document.createElement("p");
+      var incomeDescription = document.createElement("p");
+      var image = document.createElement("img");
+      var progress = document.createElement("progress");
+      var button = document.createElement("button");
+
+      button.className = "main-button green bg-white-button";
+      button.textContent = "UPGRADE";
+      button.style.backgroundColor = "white";
+
+      progress.max = "100";
+      progress.value = "25";
+      progress.style.variant = "info";
+
+      image.src = coin;
+      image.height = 50;
+      image.width = 50;
+
+      payoutDescription.textContent = "PAYOUTS: 2";
+      payoutDescription.className = "plate-description white";
+
+      incomeDescription.textContent = "INCOME 80% PER 1"
+      incomeDescription.className = "plate-description white";
+
+      mainTitleParagraph.textContent = parameter + " BNB";
+      mainTitleParagraph.className = "plate-title white";
+
+      plate.innerHTML = "";
+      plate.className = "plate green";
+
+      plate.appendChild(image);
+      plate.appendChild(mainTitleParagraph);
+      plate.appendChild(payoutDescription)
+      plate.appendChild(incomeDescription)
+      plate.appendChild(progress)
+      plate.appendChild(button)
 
     }
     else {
@@ -183,7 +221,7 @@ const Plate = () => {
       <div id='test_id'>
 
         <div className="plate plate-long">
-          <img className="long-plate-image" src={plateImage} height="50" display="inline" />
+          <img className="long-plate-image" src='src/components/metamaskLogo.png' height="50" display="inline" />
           <p className="long-plate-p">
             TOTAL INCOME
           </p>

@@ -94,10 +94,6 @@ input::-webkit-inner-spin-button {
   height:40px;
   line-height: 40px;
 }
-.plate:hover .plate-title{
-  font-size:35px;
-  transition: 0.3s;
-}
 .plate-holder{
   display:block;
   justify-content: center;
