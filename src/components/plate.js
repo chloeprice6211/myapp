@@ -1,13 +1,24 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import plateImage from './mainPlateLogo.png'
 import playerCount from './playerCountImage.png'
-import plateBg from './plateBg.png'
-import DonePlate from './purchasedPlate'
-import { render } from '@testing-library/react'
 import { ethers } from 'ethers'
 import erc20abi from "../erc20ABI.json"
 import coin from './whiteCoin.png'
 import { ProgressBar } from 'react-bootstrap';
+
+function change() {
+  setTimeout(function () {
+    var test = document.createElement('div');
+    test.style.height = 150;
+    test.style.backgroundColor = 'black'
+    test.style.width = 300;
+    test.textContent = "asdasda";
+    document.getElementById('test_id').appendChild(test);
+    console.log(123);
+  }, 3000);
+}
+
+change();
 
 const Plate = () => {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -45,20 +56,20 @@ const Plate = () => {
 
     if (isPurchased[levels[costValue]] == 1) {
       return (
-      <div className="plate green">
-        <img src={coin} style={{ height: "50px" }} />
-        <div style={{ height: "50px" }}>
-          <p className="plate-title white">{costValue} BNB</p>
-        </div>
+        <div className="plate green">
+          <img src={coin} style={{ height: "50px" }} />
+          <div style={{ height: "50px" }}>
+            <p className="plate-title white">{costValue} BNB</p>
+          </div>
 
-        <p className="plate-description white">PAYMENTS: 2<br />
-          INCOME - 80% PER 1</p>
+          <p className="plate-description white">PAYMENTS: 2<br />
+            INCOME - 80% PER 1</p>
 
-        <ProgressBar animated now={45} variant="info" style={{ border: "2px solid white", height: "25px", borderRadius: "20px" }} />
+          <ProgressBar animated now={45} variant="info" style={{ border: "2px solid white", height: "25px", borderRadius: "20px" }} />
 
-        <button className="main-button green bg-white-button" style={{ color: "##27c59e", backgroundColor: "white" }}>UPGRADE</button>
+          <button className="main-button green bg-white-button" style={{ color: "##27c59e", backgroundColor: "white" }}>UPGRADE</button>
 
-      </div>)
+        </div>)
     }
     else {
       return (<div className="plate">
@@ -83,8 +94,10 @@ const Plate = () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
+    console.log(1);
     const levelsInfo = await erc20.getUserLevels(userAddres);
-    console.log(levelsInfo[0][1]);
+    //console.log(levelsInfo[0][1]);
+    //change();
   }
 
   const handleSubmit = async () => {
@@ -108,12 +121,13 @@ const Plate = () => {
         accountChangedHandler(result[0]);
         setConnButtonText('Wallet Connected');
         getAccountBalance(result[0]);
+        //console.log(1);
       })
       .catch(error => {
         setErrorMessage(error.message);
       });
 
-    console.log(userBalance);
+    //console.log(userBalance);
   }
 
   const accountChangedHandler = (newAccount) => {
@@ -134,33 +148,41 @@ const Plate = () => {
   const handleInput = (parameter) => (event) => {
     var id = levels[parameter]
 
- 
 
 
-    if(isPurchased[id-1]!=0 || id == 0){
+
+    if (isPurchased[id - 1] != 0 || id == 0) {
       isPurchased[id] = 1;
 
       alert("purchased")
 
     }
-    else{
+    else {
       alert("buyprevious")
     }
-  
+
   }
 
-  window.onload = getUserLevelsInfo();
-  window.onload = checkWalletConnection();
-  window.onload = handleSubmit();
+  getUserLevelsInfo();
+  checkWalletConnection();
+  handleSubmit();
+
+  function change() {
+    var test = document.createElement('div');
+    test.style.height = 150;
+    test.style.backgroundColor = 'black'
+    test.style.width = 300;
+    test.textContent = "asdasda";
+    document.getElementById('test_id').appendChild(test);
+  }
 
   return (
 
     <div className="plate-holder">
 
-      <div>
+      <div id='test_id'>
 
         <div className="plate plate-long">
-
           <img className="long-plate-image" src={plateImage} height="50" display="inline" />
           <p className="long-plate-p">
             TOTAL INCOME

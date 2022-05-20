@@ -11,7 +11,6 @@ import { Redirect } from "react-router"
 import $ from "jquery"
 
 function App() {
-
   return (
     <div className="App">
       <Header />

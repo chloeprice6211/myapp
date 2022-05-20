@@ -5,6 +5,7 @@ import { Line, Circle } from 'rc-progress';
 import { ProgressBar } from 'react-bootstrap';
 
 export default class purchasedPlate extends Component {
+
     render() {
         return (
             <>
@@ -13,7 +14,6 @@ export default class purchasedPlate extends Component {
                     <div style={{height:"50px"}}>
                     <p className="plate-title white">10 BNB</p>
                     </div>
-
                     <p className="plate-description white">PAYMENTS: 2<br/>
                     INCOME - 80% PER 1</p>
 
