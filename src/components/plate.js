@@ -153,9 +153,7 @@ const Plate = () => {
     if (isPurchased[id - 1] != 0 || id == 0) {
       isPurchased[id] = 1;
 
-      alert(id);
-      alert(isPurchased);
-
+    
       var plate = event.target.parentNode;
       var mainTitleParagraph = document.createElement("p");
       var payoutDescription = document.createElement("p");
@@ -208,8 +206,7 @@ const Plate = () => {
 
     }
     else {
-      alert(id);
-      alert(isPurchased);
+  
       alert("buyprevious");
     }
 
