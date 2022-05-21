@@ -18,14 +18,12 @@ function change() {
   }, 3000);
 }
 
-change();
-
 const Plate = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [defaultAccount, setDefaultAccount] = useState(null);
   const [userBalance, setUserBalance] = useState(null);
   const [connButtonText, setConnButtonText] = useState('Connect Wallet');
-  const isPurchased = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  const isPurchased = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
   const levels = {
     "0.05": 0,
@@ -64,7 +62,7 @@ const Plate = () => {
 
           <p className="plate-description white">PAYMENTS: 2</p>
           <p className="plate-description white">INCOME 80% PER 1</p>
-         
+
 
           <ProgressBar animated now={45} variant="info" style={{ border: "2px solid white", height: "25px", borderRadius: "20px" }} />
 
@@ -79,7 +77,7 @@ const Plate = () => {
           <p className="plate-title">{costValue} BNB</p>
         </div>
         <p className="plate-description">PAYMENTS: 2</p>
-          <p  className="plate-description">
+        <p className="plate-description">
           INCOME 80% PER 1
         </p>
 
@@ -155,6 +153,9 @@ const Plate = () => {
     if (isPurchased[id - 1] != 0 || id == 0) {
       isPurchased[id] = 1;
 
+      alert(id);
+      alert(isPurchased);
+
       var plate = event.target.parentNode;
       var mainTitleParagraph = document.createElement("p");
       var payoutDescription = document.createElement("p");
@@ -166,6 +167,16 @@ const Plate = () => {
       button.className = "main-button green bg-white-button";
       button.textContent = "UPGRADE";
       button.style.backgroundColor = "white";
+      button.addEventListener('click',function(event){
+
+        var plateParent = event.target.parentNode;
+        var payoutP = plateParent.querySelector("p[id=payout]");
+
+        var numberOfPayout = parseInt(payoutP.textContent);
+        numberOfPayout+=2;
+        payoutP.textContent = numberOfPayout;
+        
+      });
 
       progress.max = "100";
       progress.value = "25";
@@ -175,8 +186,9 @@ const Plate = () => {
       image.height = 50;
       image.width = 50;
 
-      payoutDescription.textContent = "PAYOUTS: 2";
+      payoutDescription.textContent = parseInt(2);
       payoutDescription.className = "plate-description white";
+      payoutDescription.id = 'payout'
 
       incomeDescription.textContent = "INCOME 80% PER 1"
       incomeDescription.className = "plate-description white";
@@ -196,7 +208,9 @@ const Plate = () => {
 
     }
     else {
-      alert("buyprevious")
+      alert(id);
+      alert(isPurchased);
+      alert("buyprevious");
     }
 
   }
