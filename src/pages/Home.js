@@ -1,6 +1,8 @@
 import React, { Component, useState } from 'react'
 import '../App.css';
+import Levels from '../components/levels'
 import Plate from '../components/plate'
+import Info from '../components/info'
 import { Container } from 'react-bootstrap'
 import { Navigate } from 'react-router-dom'
 import { useMetaMask } from "metamask-react";
@@ -15,8 +17,11 @@ const Home = () => {
     <>
 
       <Container>
+
+       
+        <Info />
+        <Levels/>
         <Plate />
-        
         
       </Container>
 

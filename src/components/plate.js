@@ -162,6 +162,8 @@ const Plate = () => {
       var progress = document.createElement("progress");
       var button = document.createElement("button");
 
+      var prog = React.createElement(ProgressBar);
+
       button.className = "main-button green bg-white-button";
       button.textContent = "UPGRADE";
       button.style.backgroundColor = "white";
@@ -203,6 +205,7 @@ const Plate = () => {
       plate.appendChild(incomeDescription)
       plate.appendChild(progress)
       plate.appendChild(button)
+      plate.appendChild(prog);
 
     }
     else {
@@ -229,36 +232,7 @@ const Plate = () => {
 
     <div className="plate-holder">
 
-      <div id='test_id'>
-
-        <div className="plate plate-long">
-          <img className="long-plate-image" src='src/components/metamaskLogo.png' height="50" display="inline" />
-          <p className="long-plate-p">
-            TOTAL INCOME
-          </p>
-          <p id="totalBNBIncomeP" className="long-plate-p-value" style={{ display: "inline" }}>
-            0
-          </p>
-          <p className="long-plate-p-value" style={{ display: "inline" }}>
-            BNB
-          </p>
-
-        </div>
-
-
-        <div className="plate plate-long">
-
-          <img className="long-plate-image" src={playerCount} height="50" display="inline" />
-          <p className="long-plate-p">
-            PLAYER COUNT
-          </p>
-          <p id="totalPlayerCountP" className="long-plate-p-value">
-            0
-          </p>
-
-        </div>
-
-      </div>
+     
 
       {
         testRender(0.05)
