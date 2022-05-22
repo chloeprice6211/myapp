@@ -21,7 +21,6 @@ const Home = () => {
        
         <Info />
         <Levels/>
-        <Plate />
         
       </Container>
 

@@ -274,6 +274,7 @@ input:not(:focus)::placeholder {
   color:white;
   font-weight: bolder;
   font-size:15px;
+  cursor:pointer;
   
   margin:10px;
   border-radius: 15px;
@@ -299,8 +300,4 @@ input:not(:focus)::placeholder {
   widtH:700px;
   border-radius: 30px;
   padding:50px;
-}
-.lvl-current{
-  background-color: black;
-  color:white;
 }

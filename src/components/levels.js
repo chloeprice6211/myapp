@@ -1,36 +1,58 @@
 import { render } from '@testing-library/react'
 import React, { Component } from 'react'
 
-let items = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'd'];
-let itemList = [];
+let costs = [0.05,0.07,0.1,0.14,0.2];
+const owned = [true,true,false,false,false];
 
-for (var a = 0; a < 20; a++) {
-    itemList.push(<div className='lvl-plate' onClick={function (event) {
-        var el = event.target;
+const setColors = () =>{
+    var mainPlate = document.getElementById("lvlPlate");
 
-        resetColors()
-        el.style.backgroundColor = "red";
-        
-
-    }}
-    >{a + 1}
-    </div>)
-}
-
-const resetColors = () => {
-    var parentPlate = document.getElementById("lvlPlate");
-
-    for (var el of parentPlate.children) {
-        el.style.backgroundColor = "#2dbe90"
+    for(var a = 0;a<mainPlate.childElementCount;a++){
+        if(owned[a]){
+            mainPlate.children[a].style.backgroundColor = 'red';
+        }
+        else {
+            mainPlate.children[a].style.backgroundColor = 'gray';
+        }
     }
 }
+const onLvlClick = (parameter) => (event) =>{
+    setColors()
+    event.target.style.backgroundColor = 'black';
 
+    var mainPlate = document.getElementById('mainPlate');
+    mainPlate.textContent = parameter;
+}
+window.onload = setColors;
 function App() {
 
     return (
-        <div className='lvl-plate-holder' id='lvlPlate'>
-            {itemList}
-        </div>
+        <>
+        
+            <div className='lvl-plate-holder' id='lvlPlate'>
+                <div className='lvl-plate' onClick={onLvlClick(0.05)}>
+                    1
+                </div>
+                <div className='lvl-plate'  onClick={onLvlClick(0.07)}>
+                    2
+                </div>
+                <div className='lvl-plate'  onClick={onLvlClick(0.1)}>
+                    3
+                </div>
+                <div className='lvl-plate'  onClick={onLvlClick(0.14)}>
+                    4
+                </div>
+                <div className='lvl-plate'  onClick={onLvlClick(0.02)}>
+                    5
+                </div>
+            </div>
+
+            <div className='main-plate' id='mainPlate'>
+                
+            </div>
+           
+
+        </>
     );
 }
 
