@@ -230,89 +230,12 @@ const Plate = () => {
 
   return (
 
-    <div className="plate-holder">
+    <>
+<div className='main-plate'>
+    sometext
+</div>
+    </>
 
-     
-
-      {
-        testRender(0.05)
-      }
-
-      {
-        testRender(0.07)
-      }
-
-      {
-        testRender(0.1)
-      }
-
-      {
-        testRender(0.14)
-      }
-
-      {
-        testRender(0.2)
-      }
-
-      {
-        testRender(0.28)
-      }
-
-      {
-        testRender(0.4)
-      }
-
-      {
-        testRender(0.55)
-      }
-
-      {
-        testRender(0.8)
-      }
-
-      {
-        testRender(1.1)
-      }
-
-      {
-        testRender(1.6)
-      }
-
-      {
-        testRender(2.2)
-      }
-
-      {
-        testRender(3.2)
-      }
-
-      {
-        testRender(4.4)
-      }
-
-      {
-        testRender(6.5)
-      }
-
-      {
-        testRender(8)
-      }
-      {
-        testRender(10)
-      }
-      {
-        testRender(12.5)
-      }
-      {
-        testRender(16)
-      }
-      {
-        testRender(20)
-      }
-
-
-
-    </div>
   )
 }
 

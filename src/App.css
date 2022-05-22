@@ -268,25 +268,39 @@ input:not(:focus)::placeholder {
 }
 .lvl-plate{
   display:inline-block;
-  height:75px;
-  width:75px;
+  height:50px;
+  width:50px;
   background-color: #2dbe90;
   color:white;
   font-weight: bolder;
-  font-size:25px;
+  font-size:15px;
   
   margin:10px;
   border-radius: 15px;
-  line-height: 75px;
+  line-height: 50px;
 }
 .lvl-plate-holder{
     display:flexbox;
     margin-left:120px;
     margin-right:120px;
+    margin-bottom:30px;
 }
 @media only screen and (max-width: 991px){
   .lvl-plate-holder{
     margin-right:50px;
     margin-left:50px;
   }
+}
+.main-plate{
+
+  display:inline-block;
+  background-color: white;
+  height:400px;
+  widtH:700px;
+  border-radius: 30px;
+  padding:50px;
+}
+.lvl-current{
+  background-color: black;
+  color:white;
 }
