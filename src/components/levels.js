@@ -22,6 +22,27 @@ const onLvlClick = (parameter) => (event) =>{
 
     var mainPlate = document.getElementById('mainPlate');
     mainPlate.textContent = parameter;
+
+    if(owned[costs.indexOf(parameter)]){
+        var upgradeButton = document.createElement('button');
+
+        upgradeButton.textContent = 'upgrade';
+
+        mainPlate.appendChild(upgradeButton);
+    }
+    else{
+        var buyButton = document.createElement('button');
+
+        buyButton.textContent = 'buy';
+        buyButton.addEventListener('click',function(event){
+            owned[costs.indexOf(parameter)] = true;
+            event.target.parentNode.innerHTML = '';
+
+        })
+        
+
+        mainPlate.appendChild(buyButton);
+    }   
 }
 window.onload = setColors;
 function App() {
