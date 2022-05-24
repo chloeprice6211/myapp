@@ -11,7 +11,7 @@ const setColors = () => {
 
     for (var a = 0; a < mainPlate.childElementCount; a++) {
         if (owned[a]) {
-            mainPlate.children[a].style.backgroundColor = 'red';
+            mainPlate.children[a].style.backgroundColor = '#33c496';
         }
         else {
             mainPlate.children[a].style.backgroundColor = 'gray';
@@ -104,9 +104,16 @@ const createToBuy = (parameter) => {
     buyButton.className = 'main-button';
     buyButton.style.marginTop="110px";
     buyButton.addEventListener('click', function (event) {
-        mainPlate.innerHTML = '';
-        owned[costs.indexOf(parameter)] = true;
-        createPurchased(parameter)
+
+        if(owned[costs.indexOf(parameter)-1]){
+            mainPlate.innerHTML = '';
+            owned[costs.indexOf(parameter)] = true;
+            createPurchased(parameter)
+        }
+        else{
+            alert('buy previous');
+        }
+      
     })
 
     mainPlate.appendChild(levelP);
@@ -115,7 +122,7 @@ const createToBuy = (parameter) => {
 }
 const onLvlClick = (parameter) => (event) => {
     setColors()
-    event.target.style.backgroundColor = 'black';
+    event.target.style.backgroundColor = "#29a77f";
 
     var mainPlate = document.getElementById('mainPlate');
     mainPlate.innerHTML = "";
