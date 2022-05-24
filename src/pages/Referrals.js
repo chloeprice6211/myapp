@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import Header from '../components/header'
 import { Container } from 'react-bootstrap'
+import { ethers } from 'ethers'
+import erc20abi from "../erc20ABI.json"
+
+var userAddres;
 
 const copyReferralHandler = () => {
 
@@ -20,6 +24,34 @@ const copyReferralHandler = () => {
     return result;
 
 }
+
+const checkWalletConnection = async () => {
+    window.ethereum.request({ method: 'eth_requestAccounts' })
+      .then(result => {
+        console.log(result[0])
+        userAddres = result[0];
+        getUserId();
+      })
+      .catch(error => {
+        console.log(error.message)
+      });
+
+  }
+
+const getUserId = async () => {
+    const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
+
+    const userID = await erc20.getUserIdByAddress(userAddres);
+
+    const input = document.getElementById("referralAddresInput");
+
+    input.value = "bnbgame.fun/" + userID;
+}
+
+checkWalletConnection();
 
 export default class Referrals extends Component {
 
@@ -77,7 +109,7 @@ export default class Referrals extends Component {
                             </div>
 
                         </p>
-                        <input id="referralAddresInput" type="text" readonly class="form-control" value="some referral link" style={{ borderRadius: "10px", marginTop: "30px", textAlign: "center", display: "inline", width: "300px", fontSize: "20px" }} />
+                        <input id="referralAddresInput" type="text" readonly class="form-control" value="bnbgame.fun/" style={{ borderRadius: "10px", marginTop: "30px", textAlign: "center", display: "inline", width: "300px", fontSize: "20px" }} />
                         <button onClick={copyReferralHandler} className="main-button" style={{
                             marginLeft: "20px",
                             height: "45px"

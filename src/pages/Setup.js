@@ -6,6 +6,7 @@ import { Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ethers } from 'ethers'
 import { Navigate } from 'react-router-dom'
+import erc20abi from "../erc20ABI.json"
 
 const Setup = () => {
 
@@ -16,6 +17,14 @@ const Setup = () => {
     const button = document.getElementById("confirmButton");
 
 	const connectWalletHandler = () => {
+
+	const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
+	
+	var user;
+
 		if (window.ethereum && window.ethereum.isMetaMask) {
 			console.log('MetaMask Here!');
 
@@ -26,6 +35,10 @@ const Setup = () => {
 					getAccountBalance(result[0]);
                     button.disabled = false;
                     button.addEventListener('click', register);
+					user = result[0];
+					console.log(user);
+					const isRegistered = erc20.isUserRegistered(user);
+	                if (isRegistered) window.location.href = "/";
 				})
 				.catch(error => {
 					setErrorMessage(error.message);
@@ -37,6 +50,8 @@ const Setup = () => {
 			setErrorMessage('Please install MetaMask browser extension to interact');
 		}
 	}
+
+	connectWalletHandler();
 
 	// update account, will cause component re-render
 	const accountChangedHandler = (newAccount) => {

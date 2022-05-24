@@ -70,12 +70,14 @@ const onLvlClick = (parameter) => (event) => {
     }
 }
 window.onload = setColors;
+
 function App() {
 
     return (
         <>
 
             <div className='lvl-plate-holder' id='lvlPlate'>
+
                 <div className='lvl-plate' onClick={onLvlClick(0.05)}>
                     1
                 </div>
@@ -88,18 +90,21 @@ function App() {
                 <div className='lvl-plate' onClick={onLvlClick(0.14)}>
                     4
                 </div>
-                <div className='lvl-plate' onClick={onLvlClick(0.02)}>
+                <div className='lvl-plate' onClick={onLvlClick(0.2)}>
+
                     5
                 </div>
+
             </div>
 
             <div className='main-plate' id='mainPlate'>
 
             </div>
 
-
         </>
+
     );
 }
+
 
 export default App;
