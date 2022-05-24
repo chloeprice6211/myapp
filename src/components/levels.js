@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react'
 import React, { Component } from 'react'
+import { ProgressBar } from 'react-bootstrap'
 
 let costs = [0.05, 0.07, 0.1, 0.14, 0.2];
 let lvls = [2, 2, 2, 2, 2]
@@ -24,12 +25,27 @@ const createPurchased = (parameter) => {
     var payoutCount = document.createElement('p');
     var levelP = document.createElement('p');
     var levelPriceP = document.createElement('p');
+    var testDiv = document.createElement('div');
+    var progress = document.createElement('div');
+    var progressP = document.createElement('div');
 
+    progress.className='progress';
+    progressP.className='progress-bar progress-bar-striped progress-bar-animated'
+    progressP.role = 'progressbar'
+    
+    
+    progressP.style.width='300px';
+    progressP.ariaValueMax = "100";
+    progressP.ariaValueMin = "0";
+    progressP.ariaValueNow = '25';
+    progress.appendChild(progressP);
+
+    testDiv.innerHTML = <progress value={25} /> + 'aaaa';
     levelP.textContent = 'LEVEL ' + (costs.indexOf(parameter) + 1);
     levelP.className = 'plate-description font-l';
 
     levelPriceP.textContent = parameter + ' BNB';
-    levelPriceP.className ='plate-title';
+    levelPriceP.className = 'plate-title';
 
     payoutCount.textContent = lvls[costs.indexOf(parameter)];
 
@@ -48,6 +64,8 @@ const createPurchased = (parameter) => {
     mainPlate.appendChild(levelPriceP);
     mainPlate.appendChild(upgradeButton);
     mainPlate.appendChild(payoutCount);
+    mainPlate.appendChild(progress);
+
 
 }
 const createToBuy = (parameter) => {
@@ -94,7 +112,7 @@ window.onload = setColors;
 function App() {
 
     return (
-       <>
+        <>
 
             <div className='lvl-plate-holder' id='lvlPlate'>
 
@@ -110,18 +128,18 @@ function App() {
                 <div className='lvl-plate' onClick={onLvlClick(0.14)}>
                     4
                 </div>
-                <div className='lvl-plate'  onClick={onLvlClick(0.2)}>
+                <div className='lvl-plate' onClick={onLvlClick(0.2)}>
 
                     5
                 </div>
-                
+
             </div>
 
             <div className='main-plate' id='mainPlate'>
 
             </div>
 
-</>
+        </>
 
     );
 }
