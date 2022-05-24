@@ -292,17 +292,29 @@ input:not(:focus)::placeholder {
     margin-left:50px;
   }
 }
+
 .main-plate{
 
   display:inline-block;
   background-color: white;
   height:400px;
-  widtH:700px;
+  width:500px;
   border-radius: 30px;
-  padding:30px;
+  padding:60px;
 }
 .font-l{
   font-size:25px;
   color:gray;
   margin-top:0px;
+}
+.font-m{
+  font-size:17px;
+  color:gray;
+  margin-top:0px;
+}
+@media only screen and (max-width: 991px){
+  .main-plate{
+    width:300px;
+    padding:30px;
+  }
 }
