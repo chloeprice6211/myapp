@@ -5,6 +5,8 @@ import { ethers } from 'ethers'
 import erc20abi from "../erc20ABI.json"
 
 var userAddres;
+var referrals = 0;
+var referralsPayout = 0;
 
 const copyReferralHandler = () => {
 
@@ -46,9 +48,17 @@ const getUserId = async () => {
 
     const userID = await erc20.getUserIdByAddress(userAddres);
 
+    const userInfo = await erc20.getUser(userAddres);
+
+    referrals = userInfo[4] / Math.pow(10, 0);
+    referralsPayout = userInfo[5] / Math.pow(10, 0);
+
     const input = document.getElementById("referralAddresInput");
 
     input.value = "bnbgame.fun/" + userID;
+
+    console.log('referrals' + referrals);
+    console.log('payout' + referralsPayout);
 }
 
 checkWalletConnection();
@@ -66,11 +76,11 @@ export default class Referrals extends Component {
 
                     <div className="plate">
                         <p style={{ textAlign: "left", fontSize: "17px", fontFamily: "Calibri", fontWeight: "bolder" }}>REFERRALS COUNT</p>
-                        <p id="referralCountP" style={{ textAlign: "center", fontSize: "35px", fontFamily: "Calibri", fontWeight: "bolder", color: "#11d1a4" }}>0</p>
+                        <p id="referralCountP" style={{ textAlign: "center", fontSize: "35px", fontFamily: "Calibri", fontWeight: "bolder", color: "#11d1a4" }}>{referrals}</p>
                     </div>
                     <div className="plate">
                         <p style={{ textAlign: "left", fontSize: "17px", fontFamily: "Calibri", fontWeight: "bolder" }}>REFERRAL INCOME</p>
-                        <p id="referralBNBRewardP" style={{ textAlign: "center", fontSize: "35px", fontFamily: "Calibri", fontWeight: "bolder", color: "#11d1a4", display: "inline" }}>0</p>
+                        <p id="referralBNBRewardP" style={{ textAlign: "center", fontSize: "35px", fontFamily: "Calibri", fontWeight: "bolder", color: "#11d1a4", display: "inline" }}>{referralsPayout}</p>
                         <p style={{ textAlign: "center", fontSize: "35px", fontFamily: "Calibri", fontWeight: "bolder", color: "#11d1a4", display: "inline" }}> BNB</p>
                         <p></p>
                     </div>
