@@ -1,10 +1,42 @@
 import { render } from '@testing-library/react'
 import React, { Component } from 'react'
 import { ProgressBar } from 'react-bootstrap'
+import { ethers } from 'ethers'
+import erc20abi from "../erc20ABI.json"
 
 let costs = [0.05, 0.07, 0.1, 0.14, 0.2];
 let lvls = [2, 2, 2, 2, 2]
+let maxPayouts = [2, 2, 2, 2, 2]
 const owned = [true, true, false, false, false];
+let queue = [0, 0, 0, 0, 0];
+let maxQueue = [0, 0, 0, 0, 0];
+
+const getLevelQueue = async () => {
+    const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+    const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
+    const levelsInfo = await erc20.getUserLevels("0xB7281943d754B28F38813dc4F9c8560F06E4D0B0");
+
+    for (var i = 0; i < costs.length; i++) {
+        const queueInfo = await erc20.getPlaceInQueue("0xB7281943d754B28F38813dc4F9c8560F06E4D0B0", i + 1);
+        var a = queueInfo[0] / Math.pow(10, 0);
+        var b = queueInfo[1] / Math.pow(10, 0);
+        queue[i] = a;
+        maxQueue[i] = b;
+
+        owned[i] = levelsInfo[0][i + 1];
+        lvls[i] = levelsInfo[1][i + 1];
+        maxPayouts[i] = levelsInfo[2][i + 1];
+    }
+
+    await console.log(levelsInfo);
+
+    setColors();
+    
+}
+
+getLevelQueue();
 
 const setColors = () => {
     var mainPlate = document.getElementById("lvlPlate");
@@ -41,7 +73,10 @@ const createPurchased = (parameter) => {
     progressP.role = 'progressbar'
     
     
-    progressP.style.width='80%';
+    const a = queue[costs.indexOf(parameter)];
+    const b = maxQueue[costs.indexOf(parameter)];
+
+    progressP.style.width= ((b - a) / b) * 100 + "%";
     progress.style.height="40px";
     progress.style.opacity = '0.8'
     progress.style.width="100%";
@@ -61,7 +96,7 @@ const createPurchased = (parameter) => {
     levelPriceP.textContent = parameter + ' BNB';
     levelPriceP.className = 'plate-title';
 
-    payoutCount.textContent = 'YOU HAVE ' + lvls[costs.indexOf(parameter)] + ' PAYOUTS';
+    payoutCount.textContent = 'YOU HAVE ' + lvls[costs.indexOf(parameter)] + '  OF  ' + maxPayouts[costs.indexOf(parameter)] + '  PAYOUTS';
     payoutCount.className = 'plate-description font-m';
 
     upgradeButton.textContent = 'UPGRADE';
@@ -134,7 +169,6 @@ const onLvlClick = (parameter) => (event) => {
         createToBuy(parameter);
     }
 }
-window.onload = setColors;
 
 function App() {
 
