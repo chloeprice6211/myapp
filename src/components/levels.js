@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react'
 import React, { Component } from 'react'
+import { ProgressBar } from 'react-bootstrap'
 
 let costs = [0.05, 0.07, 0.1, 0.14, 0.2];
 let lvls = [2, 2, 2, 2, 2]
@@ -24,27 +25,66 @@ const createPurchased = (parameter) => {
     var payoutCount = document.createElement('p');
     var levelP = document.createElement('p');
     var levelPriceP = document.createElement('p');
+    var testDiv = document.createElement('div');
+    var holder = document.createElement('div');
+    var progress = document.createElement('div');
+    var progressP = document.createElement('div');
 
-    levelP.textContent = costs.indexOf(parameter) + 1;
+    holder.style.justifyContent = 'center';
+    holder.style.display = 'flex';
+ 
+
+  
+
+    progress.className='progress';
+    progressP.className='progress-bar progress-bar-striped progress-bar-animated bg-success'
+    progressP.role = 'progressbar'
+    
+    
+    progressP.style.width='80%';
+    progress.style.height="40px";
+    progress.style.opacity = '0.8'
+    progress.style.width="100%";
+    progress.style.borderRadius = "30px";
+    progressP.ariaValueMax = "100";
+    progressP.ariaValueMin = "0";
+    progressP.ariaValueNow = '40';
+    progress.ariaValueNow = '25';
+    progress.appendChild(progressP);
+
+    holder.appendChild(progress);
+
+    testDiv.innerHTML = <progress value={25} /> + 'aaaa';
+    levelP.textContent = 'LEVEL ' + (costs.indexOf(parameter) + 1);
+    levelP.className = 'plate-description font-l';
 
     levelPriceP.textContent = parameter + ' BNB';
+    levelPriceP.className = 'plate-title';
 
-    payoutCount.textContent = lvls[costs.indexOf(parameter)];
+    payoutCount.textContent = 'YOU HAVE ' + lvls[costs.indexOf(parameter)] + ' PAYOUTS';
+    payoutCount.className = 'plate-description font-m';
 
-    upgradeButton.textContent = 'upgrade';
+    upgradeButton.textContent = 'UPGRADE';
+    upgradeButton.className = 'main-button';
+    upgradeButton.style.marginTop = '30px';
     upgradeButton.addEventListener('click', function (event) {
         var currentLvl = lvls[costs.indexOf(parameter)];
 
 
-        payoutCount.textContent = parseInt(currentLvl + 2);
+        payoutCount.textContent ='YOU HAVE ' + parseInt(currentLvl + 2) + ' PAYOUTS';
+       
 
         lvls[costs.indexOf(parameter)] += 2;
     })
 
     mainPlate.appendChild(levelP);
     mainPlate.appendChild(levelPriceP);
-    mainPlate.appendChild(upgradeButton);
     mainPlate.appendChild(payoutCount);
+    mainPlate.appendChild(holder);
+    mainPlate.appendChild(upgradeButton);
+  
+    
+
 
 }
 const createToBuy = (parameter) => {
@@ -53,12 +93,18 @@ const createToBuy = (parameter) => {
     var levelP = document.createElement('p');
     var levelPriceP = document.createElement('p');
 
-    levelP.textContent = costs.indexOf(parameter) + 1;
+    levelP.textContent = 'LEVEL ' + (costs.indexOf(parameter) + 1);
+    levelP.className = 'plate-description font-l';
 
-    levelPriceP.textContent = parameter;
 
-    buyButton.textContent = 'buy';
+    levelPriceP.textContent = parameter + ' BNB';
+    levelPriceP.className = 'plate-title';
+
+    buyButton.textContent = 'BUY';
+    buyButton.className = 'main-button';
+    buyButton.style.marginTop="110px";
     buyButton.addEventListener('click', function (event) {
+        mainPlate.innerHTML = '';
         owned[costs.indexOf(parameter)] = true;
         createPurchased(parameter)
     })
@@ -86,7 +132,7 @@ window.onload = setColors;
 function App() {
 
     return (
-       <>
+        <>
 
             <div className='lvl-plate-holder' id='lvlPlate'>
 
@@ -102,18 +148,18 @@ function App() {
                 <div className='lvl-plate' onClick={onLvlClick(0.14)}>
                     4
                 </div>
-                <div className='lvl-plate'  onClick={onLvlClick(0.2)}>
+                <div className='lvl-plate' onClick={onLvlClick(0.2)}>
 
                     5
                 </div>
-                
+
             </div>
 
             <div className='main-plate' id='mainPlate'>
 
             </div>
 
-</>
+        </>
 
     );
 }
