@@ -299,5 +299,10 @@ input:not(:focus)::placeholder {
   height:400px;
   widtH:700px;
   border-radius: 30px;
-  padding:50px;
+  padding:30px;
+}
+.font-l{
+  font-size:25px;
+  color:gray;
+  margin-top:0px;
 }

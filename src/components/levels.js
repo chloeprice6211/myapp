@@ -25,13 +25,16 @@ const createPurchased = (parameter) => {
     var levelP = document.createElement('p');
     var levelPriceP = document.createElement('p');
 
-    levelP.textContent = costs.indexOf(parameter) + 1;
+    levelP.textContent = 'LEVEL ' + (costs.indexOf(parameter) + 1);
+    levelP.className = 'plate-description font-l';
 
     levelPriceP.textContent = parameter + ' BNB';
+    levelPriceP.className ='plate-title';
 
     payoutCount.textContent = lvls[costs.indexOf(parameter)];
 
-    upgradeButton.textContent = 'upgrade';
+    upgradeButton.textContent = 'UPGRADE';
+    upgradeButton.className = 'main-button';
     upgradeButton.addEventListener('click', function (event) {
         var currentLvl = lvls[costs.indexOf(parameter)];
 
@@ -53,12 +56,17 @@ const createToBuy = (parameter) => {
     var levelP = document.createElement('p');
     var levelPriceP = document.createElement('p');
 
-    levelP.textContent = costs.indexOf(parameter) + 1;
+    levelP.textContent = 'LEVEL ' + (costs.indexOf(parameter) + 1);
+    levelP.className = 'plate-description font-l';
 
-    levelPriceP.textContent = parameter;
 
-    buyButton.textContent = 'buy';
+    levelPriceP.textContent = parameter + ' BNB';
+    levelPriceP.className = 'plate-title';
+
+    buyButton.textContent = 'BUY';
+    buyButton.className = 'main-button';
     buyButton.addEventListener('click', function (event) {
+        mainPlate.innerHTML = '';
         owned[costs.indexOf(parameter)] = true;
         createPurchased(parameter)
     })
