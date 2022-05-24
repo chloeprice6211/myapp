@@ -63,7 +63,7 @@ function App() {
                 <div className='lvl-plate'  onClick={onLvlClick(0.14)}>
                     4
                 </div>
-                <div className='lvl-plate'  onClick={onLvlClick(0.02)}>
+                <div className='lvl-plate'  onClick={onLvlClick(0.2)}>
                     5
                 </div>
             </div>

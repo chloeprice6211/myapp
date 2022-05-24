@@ -23,7 +23,7 @@ const Plate = () => {
   const [defaultAccount, setDefaultAccount] = useState(null);
   const [userBalance, setUserBalance] = useState(null);
   const [connButtonText, setConnButtonText] = useState('Connect Wallet');
-  const isPurchased = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  const isPurchased = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
   const levels = {
     "0.05": 0,
@@ -41,11 +41,7 @@ const Plate = () => {
     "3.2": 12,
     "4.4": 13,
     "6.5": 14,
-    "8": 15,
-    "10": 16,
-    "12.5": 17,
-    "16": 18,
-    "20": 19
+    "8": 15
   }
 
 
@@ -112,6 +108,8 @@ const Plate = () => {
     usersText.textContent = usersCount;
     const turnoverText = document.getElementById("totalBNBIncomeP");
     turnoverText.textContent = turnover;
+    console.log(usersCount);
+    console.log(turnover);
   }
 
   const checkWalletConnection = () => {
