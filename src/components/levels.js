@@ -7,48 +7,42 @@ import erc20abi from "../erc20ABI.json"
 let costs = [0.05, 0.07, 0.1, 0.14, 0.2, 0.28, 0.4, 0.55, 0.8, 1.1, 1.6, 2.2, 3.2, 4.4, 6.5, 8];
 let lvls = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 let maxPayouts = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
-const owned = [true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+const owned = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 let queue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let maxQueue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-let userAddres;
+let userAddres = '';
 
-const getUserAddres = () => {
+const getUserAddres = async () => {
     window.ethereum.request({ method: 'eth_requestAccounts' })
       .then(result => {
-        console.log(result);
-        userAddres = toString(result[0]);
-        console.log('useraddres = ' + userAddres);
+        userAddres = result[0];
       })
+
+      const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+  
+      const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
+      console.log('useraddres = ' + userAddres);
+      const levelsInfo = await erc20.getUserLevels(userAddres);
+  
+      for (var i = 0; i < costs.length; i++) {
+          const queueInfo = await erc20.getPlaceInQueue(userAddres, i + 1);
+          var a = queueInfo[0] / Math.pow(10, 0);
+          var b = queueInfo[1] / Math.pow(10, 0);
+          queue[i] = a;
+          maxQueue[i] = b;
+  
+          owned[i] = levelsInfo[0][i + 1];
+          lvls[i] = levelsInfo[1][i + 1];
+          maxPayouts[i] = levelsInfo[2][i + 1];
+      }
+  
+      await console.log(levelsInfo);
+  
+      setColors();
 }
 
 getUserAddres();
-
-const getLevelQueue = async () => {
-    const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-    const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
-    const levelsInfo = await erc20.getUserLevels(userAddres);
-
-    for (var i = 0; i < costs.length; i++) {
-        const queueInfo = await erc20.getPlaceInQueue(userAddres, i + 1);
-        var a = queueInfo[0] / Math.pow(10, 0);
-        var b = queueInfo[1] / Math.pow(10, 0);
-        queue[i] = a;
-        maxQueue[i] = b;
-
-        owned[i] = levelsInfo[0][i + 1];
-        lvls[i] = levelsInfo[1][i + 1];
-        maxPayouts[i] = levelsInfo[2][i + 1];
-    }
-
-    await console.log(levelsInfo);
-
-    setColors();
-
-}
-
-getLevelQueue();
 
 const setColors = () => {
     var mainPlate = document.getElementById("lvlPlate");
@@ -168,7 +162,7 @@ const createToBuy = (parameter) => {
     mainPlate.appendChild(buyButton);
 }
 const onLvlClick = (parameter) => (event) => {
-    setColors()
+    getUserAddres();
     event.target.style.backgroundColor = "#29a77f";
 
     var mainPlate = document.getElementById('mainPlate');
