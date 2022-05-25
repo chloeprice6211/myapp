@@ -13,12 +13,17 @@ let maxQueue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let userAddres = '';
 
 const getUserAddres = async () => {
-    window.ethereum.request({ method: 'eth_requestAccounts' })
+      window.ethereum.request({ method: 'eth_requestAccounts' })
       .then(result => {
         userAddres = result[0];
+        func();
       })
+}
 
-      const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
+getUserAddres();
+
+const func = async () => {
+    const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
       const provider = new ethers.providers.Web3Provider(window.ethereum);
   
       const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
@@ -41,8 +46,6 @@ const getUserAddres = async () => {
   
       setColors();
 }
-
-getUserAddres();
 
 const setColors = () => {
     var mainPlate = document.getElementById("lvlPlate");
@@ -162,7 +165,7 @@ const createToBuy = (parameter) => {
     mainPlate.appendChild(buyButton);
 }
 const onLvlClick = (parameter) => (event) => {
-    getUserAddres();
+    setColors();
     event.target.style.backgroundColor = "#29a77f";
 
     var mainPlate = document.getElementById('mainPlate');
