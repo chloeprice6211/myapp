@@ -282,11 +282,11 @@ input:not(:focus)::placeholder {
 }
 .lvl-plate-holder{
     display:flexbox;
-    margin-left:120px;
-    margin-right:120px;
+    margin-left:330px;
+    margin-right:330px;
     margin-bottom:30px;
 }
-@media only screen and (max-width: 991px){
+@media only screen and (max-width: 1200px){
   .lvl-plate-holder{
     margin-right:50px;
     margin-left:50px;

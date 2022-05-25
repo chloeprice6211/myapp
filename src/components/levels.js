@@ -4,12 +4,12 @@ import { ProgressBar } from 'react-bootstrap'
 import { ethers } from 'ethers'
 import erc20abi from "../erc20ABI.json"
 
-let costs = [0.05, 0.07, 0.1, 0.14, 0.2];
-let lvls = [2, 2, 2, 2, 2]
-let maxPayouts = [2, 2, 2, 2, 2]
-const owned = [true, true, false, false, false];
-let queue = [0, 0, 0, 0, 0];
-let maxQueue = [0, 0, 0, 0, 0];
+let costs = [0.05, 0.07, 0.1, 0.14, 0.2, 0.28, 0.4, 0.55, 0.8, 1.1, 1.6, 2.2, 3.2, 4.4, 6.5, 8];
+let lvls = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+let maxPayouts = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+const owned = [true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+let queue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let maxQueue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 const getLevelQueue = async () => {
     const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
@@ -33,7 +33,7 @@ const getLevelQueue = async () => {
     await console.log(levelsInfo);
 
     setColors();
-    
+
 }
 
 getLevelQueue();
@@ -64,22 +64,22 @@ const createPurchased = (parameter) => {
 
     holder.style.justifyContent = 'center';
     holder.style.display = 'flex';
- 
 
-  
 
-    progress.className='progress';
-    progressP.className='progress-bar progress-bar-striped progress-bar-animated bg-success'
+
+
+    progress.className = 'progress';
+    progressP.className = 'progress-bar progress-bar-striped progress-bar-animated bg-success'
     progressP.role = 'progressbar'
-    
-    
+
+
     const a = queue[costs.indexOf(parameter)];
     const b = maxQueue[costs.indexOf(parameter)];
 
-    progressP.style.width= ((b - a) / b) * 100 + "%";
-    progress.style.height="40px";
+    progressP.style.width = ((b - a) / b) * 100 + "%";
+    progress.style.height = "40px";
     progress.style.opacity = '0.8'
-    progress.style.width="100%";
+    progress.style.width = "100%";
     progress.style.borderRadius = "30px";
     progressP.ariaValueMax = "100";
     progressP.ariaValueMin = "0";
@@ -106,8 +106,8 @@ const createPurchased = (parameter) => {
         var currentLvl = lvls[costs.indexOf(parameter)];
 
 
-        payoutCount.textContent ='YOU HAVE ' + parseInt(currentLvl + 2) + ' PAYOUTS';
-       
+        payoutCount.textContent = 'YOU HAVE ' + parseInt(currentLvl + 2) + ' PAYOUTS';
+
 
         lvls[costs.indexOf(parameter)] += 2;
     })
@@ -117,8 +117,8 @@ const createPurchased = (parameter) => {
     mainPlate.appendChild(payoutCount);
     mainPlate.appendChild(holder);
     mainPlate.appendChild(upgradeButton);
-  
-    
+
+
 
 
 }
@@ -137,18 +137,18 @@ const createToBuy = (parameter) => {
 
     buyButton.textContent = 'BUY';
     buyButton.className = 'main-button';
-    buyButton.style.marginTop="110px";
+    buyButton.style.marginTop = "110px";
     buyButton.addEventListener('click', function (event) {
 
-        if(owned[costs.indexOf(parameter)-1]){
+        if (owned[costs.indexOf(parameter) - 1]) {
             mainPlate.innerHTML = '';
             owned[costs.indexOf(parameter)] = true;
             createPurchased(parameter)
         }
-        else{
+        else {
             alert('buy previous');
         }
-      
+
     })
 
     mainPlate.appendChild(levelP);
@@ -193,11 +193,54 @@ function App() {
 
                     5
                 </div>
+                <div className='lvl-plate' onClick={onLvlClick(0.28)}>
+
+                    6
+                </div>
+                <div className='lvl-plate' onClick={onLvlClick(0.4)}>
+                    7
+                </div>
+                <div className='lvl-plate' onClick={onLvlClick(0.55)}>
+
+                    8
+                </div>
+                <div className='lvl-plate' onClick={onLvlClick(0.8)}>
+
+                    9
+                </div>
+                <div className='lvl-plate' onClick={onLvlClick(1.1)}>
+
+                    10
+                </div>
+                <div className='lvl-plate' onClick={onLvlClick(1.6)}>
+
+                    11
+                </div>
+                <div className='lvl-plate' onClick={onLvlClick(2.2)}>
+
+                    12
+                </div>
+                <div className='lvl-plate' onClick={onLvlClick(3.2)}>
+
+                    13
+                </div>
+                <div className='lvl-plate' onClick={onLvlClick(4.4)}>
+
+                    14
+                </div>
+                <div className='lvl-plate' onClick={onLvlClick(6.5)}>
+
+                    15
+                </div>
+                <div className='lvl-plate' onClick={onLvlClick(8)}>
+
+                    16
+                </div>
 
             </div>
 
             <div className='main-plate' id='mainPlate'>
-
+                <p style={{ lineHeight: '250px' }} className='plate-description font-m'>SELECT A LVL</p>
             </div>
 
         </>
