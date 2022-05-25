@@ -10,16 +10,28 @@ let maxPayouts = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 const owned = [true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
 let queue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let maxQueue = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let userAddres;
+
+const getUserAddres = () => {
+    window.ethereum.request({ method: 'eth_requestAccounts' })
+      .then(result => {
+        console.log(result);
+        userAddres = toString(result[0]);
+        console.log('useraddres = ' + userAddres);
+      })
+}
+
+getUserAddres();
 
 const getLevelQueue = async () => {
     const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
-    const levelsInfo = await erc20.getUserLevels("0xB7281943d754B28F38813dc4F9c8560F06E4D0B0");
+    const levelsInfo = await erc20.getUserLevels(userAddres);
 
     for (var i = 0; i < costs.length; i++) {
-        const queueInfo = await erc20.getPlaceInQueue("0xB7281943d754B28F38813dc4F9c8560F06E4D0B0", i + 1);
+        const queueInfo = await erc20.getPlaceInQueue(userAddres, i + 1);
         var a = queueInfo[0] / Math.pow(10, 0);
         var b = queueInfo[1] / Math.pow(10, 0);
         queue[i] = a;
