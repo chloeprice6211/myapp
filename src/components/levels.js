@@ -74,22 +74,18 @@ const createPurchased = (parameter) => {
     var holder = document.createElement('div');
     var progress = document.createElement('div');
     var progressP = document.createElement('div');
+    var profitInfoP = document.createElement('p');
 
-    var test1 = document.createElement('div');
-    var test2 = document.createElement('div');
-    var test3 = document.createElement('div');
-    var test4 = document.createElement('div');
+    profitInfoP.textContent = 'PROFIT 75% PER PAYOUT';
+    profitInfoP.className = 'plate-description';
+    profitInfoP.style.color = '#12ac85';
 
     holder.style.justifyContent = 'center';
     holder.style.display = 'flex';
 
-
-
-
     progress.className = 'progress';
     progressP.className = 'progress-bar progress-bar-striped progress-bar-animated bg-success'
     progressP.role = 'progressbar'
-
 
     const a = queue[costs.indexOf(parameter)];
     const b = maxQueue[costs.indexOf(parameter)];
@@ -133,6 +129,7 @@ const createPurchased = (parameter) => {
     mainPlate.appendChild(levelP);
     mainPlate.appendChild(levelPriceP);
     mainPlate.appendChild(payoutCount);
+    mainPlate.appendChild(profitInfoP);
     mainPlate.appendChild(holder);
     mainPlate.appendChild(upgradeButton);
 
@@ -145,6 +142,11 @@ const createToBuy = (parameter) => {
     var buyButton = document.createElement('button');
     var levelP = document.createElement('p');
     var levelPriceP = document.createElement('p');
+    var profitInfoP = document.createElement('p');
+
+    profitInfoP.textContent = 'PROFIT 75% PER PAYOUT';
+    profitInfoP.className= 'plate-description';
+    profitInfoP.style.color ='#21a572';
 
     levelP.textContent = 'LEVEL ' + (costs.indexOf(parameter) + 1);
     levelP.className = 'plate-description font-l';
@@ -171,7 +173,9 @@ const createToBuy = (parameter) => {
 
     mainPlate.appendChild(levelP);
     mainPlate.appendChild(levelPriceP);
+    mainPlate.appendChild(profitInfoP);
     mainPlate.appendChild(buyButton);
+    
 }
 const onLvlClick = (parameter) => (event) => {
     setColors()
