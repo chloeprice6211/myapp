@@ -1,2 +1,5 @@
-const globalConst = 123;
-export default globalConst;
+const GlobalConsts = () => {
+    const a = 123;
+    const b = 223;
+}
+export default GlobalConsts;

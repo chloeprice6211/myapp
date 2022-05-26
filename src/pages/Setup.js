@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { ethers } from 'ethers'
 import { Navigate } from 'react-router-dom'
 import erc20abi from "../erc20ABI.json"
-import globalConst from '../GlobalVar';
 
 var contractAdress;
 var provider;
@@ -17,8 +16,9 @@ var user;
 var referrerAddres;
 
 const options = {
-	gasLimit: 21000000,
-	gasPrice: 8000000000
+	gasLimit: 21000,
+	gasPrice: 10000000000,
+	value: 25000000
 };
 
 const Setup = () => {
@@ -103,7 +103,13 @@ const Setup = () => {
 		const ssigner = await pprovider.getSigner();
 		const eerc20 = new ethers.Contract(contractAdress, erc20abi, ssigner);
 
-		console.log("123123" + globalConst);
+		if (inputValue > 0 && inputValue <= maxUsers){
+			referrerAddres = await erc20.getUserAddressById(inputValue);
+			await eerc20.registerWithReferrer(referrerAddres, options);
+		}
+		else if (inputValue == "") {
+			await eerc20.register(options);
+		}
 	}
 
 
