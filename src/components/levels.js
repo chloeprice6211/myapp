@@ -110,7 +110,7 @@ const createPurchased = (parameter) => {
     levelPriceP.textContent = parameter + ' BNB';
     levelPriceP.className = 'plate-title';
 
-    payoutCount.textContent = 'YOU HAVE ' + lvls[costs.indexOf(parameter)] + '  OF  ' + maxPayouts[costs.indexOf(parameter)] + '  PAYOUTS';
+    payoutCount.textContent = lvls[costs.indexOf(parameter)] + '  OF  ' + maxPayouts[costs.indexOf(parameter)] + '  PAYOUTS';
     payoutCount.className = 'plate-description font-m';
 
     upgradeButton.textContent = 'UPGRADE';
@@ -120,7 +120,7 @@ const createPurchased = (parameter) => {
         var currentLvl = lvls[costs.indexOf(parameter)];
 
 
-        payoutCount.textContent = 'YOU HAVE ' + parseInt(currentLvl + 2) + ' PAYOUTS';
+        payoutCount.textContent = lvls[costs.indexOf(parameter)] + ' OF '+ maxPayouts[costs.indexOf(parameter)] + ' PAYOUTS';
 
 
         lvls[costs.indexOf(parameter)] += 2;
