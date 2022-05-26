@@ -41,7 +41,7 @@ const checkWalletConnection = async () => {
   }
 
 const getUserId = async () => {
-    const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
+    const contractAdress = "0x08e288749baF3Ed15C13623123097aC8bb03998F";
     const provider = new ethers.providers.Web3Provider(window.ethereum);
 
     const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);

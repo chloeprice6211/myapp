@@ -7,23 +7,34 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { ethers } from 'ethers'
 import { Navigate } from 'react-router-dom'
 import erc20abi from "../erc20ABI.json"
+import globalConst from '../GlobalVar';
+
+var contractAdress;
+var provider;
+var erc20;
+var isConnected = false;
+var user;
+var referrerAddres;
+
+const options = {
+	gasLimit: 21000000,
+	gasPrice: 8000000000
+};
 
 const Setup = () => {
 
-    const [errorMessage, setErrorMessage] = useState(null);
+	const [errorMessage, setErrorMessage] = useState(null);
 	const [defaultAccount, setDefaultAccount] = useState(null);
 	const [userBalance, setUserBalance] = useState(null);
 	const [connButtonText, setConnButtonText] = useState('Connect Wallet');
-    const button = document.getElementById("confirmButton");
+	const button = document.getElementById("confirmButton");
 
 	const connectWalletHandler = () => {
 
-	const contractAdress = "0x97aa930F3fD44f78Fd4256a0Ee38bA4A87D894Ce";
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+		contractAdress = "0x08e288749baF3Ed15C13623123097aC8bb03998F";
+		provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    const erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
-	
-	var user;
+		erc20 = new ethers.Contract(contractAdress, erc20abi, provider);
 
 		if (window.ethereum && window.ethereum.isMetaMask) {
 			console.log('MetaMask Here!');
@@ -33,22 +44,25 @@ const Setup = () => {
 					accountChangedHandler(result[0]);
 					setConnButtonText('Wallet Connected');
 					getAccountBalance(result[0]);
-                    button.disabled = false;
-                    button.addEventListener('click', register);
+					button.addEventListener('click', registerUser);
 					user = result[0];
-					console.log(user);
-					const isRegistered = erc20.isUserRegistered(user);
-	                if (isRegistered) window.location.href = "/";
+					console.log('useruser' + user);
+					isConnected = true;
+					checkIfRegistered();
 				})
 				.catch(error => {
 					setErrorMessage(error.message);
-                    button.disabled = true;
 				});
 
 		} else {
 			console.log('Need to install MetaMask');
 			setErrorMessage('Please install MetaMask browser extension to interact');
 		}
+	}
+
+	const checkIfRegistered = async () => {
+		const isRegistered = await erc20.isUserRegistered(user);
+		if (isRegistered) window.location.href = "/";
 	}
 
 	connectWalletHandler();
@@ -74,9 +88,23 @@ const Setup = () => {
 		window.location.reload();
 	}
 
-    const register = () => {
-        window.location.href = "/";
-    }
+	const registerUser = async () => {
+		var inputField = document.getElementById("referralIdInput");
+		const inputValue = Number(inputField.value);
+		const temp = await erc20.getGlobalStatistic();
+		const maxUsers = await temp[0] / Math.pow(10, 0);
+
+		let overrides = {
+			value: ethers.utils.parseEther("1.0")     // ether in this case MUST be a string
+		};
+
+		const pprovider = new ethers.providers.Web3Provider(window.ethereum);
+		await pprovider.send("eth_requestAccounts", []);
+		const ssigner = await pprovider.getSigner();
+		const eerc20 = new ethers.Contract(contractAdress, erc20abi, ssigner);
+
+		console.log("123123" + globalConst);
+	}
 
 
 	// listen for account changes
@@ -84,43 +112,43 @@ const Setup = () => {
 
 	window.ethereum.on('chainChanged', chainChangedHandler);
 
-    return (
-        <div style={{ 
-            backgroundImage: `url(${bg})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundSize:"900px"
+	return (
+		<div style={{
+			backgroundImage: `url(${bg})`,
+			backgroundRepeat: 'no-repeat',
+			backgroundSize: "900px"
 
-          }}>
-        <Container>
-            <div className="plate-holder">
+		}}>
+			<Container>
+				<div className="plate-holder">
 
-                <div className="plate-l" onClick={connectWalletHandler}>
-                    <div style={{height:"230px"}}>
-                    <img src={MetamaskLogo} display="block" height="200" />
-                    </div>
-                   
-                    <div className="plate-title-holder">
-                        <p className="plate-title-s">CONNECT METAMASK</p>
-                    </div>
-                </div>
-                <div></div>
-                <div className="plate" style={{width:"350px"}}>
-              
-                        <p className="plate-title-s">REFERRAL</p>
-                    
-                    <input id="referralIdInput" type="number" className="someclass" placeHolder="ID" style={{textAlign:"center",borderRadius:"0px", borderTop:"none",borderLeft:"none", borderRight:"none",caretColor:"black", borderBottom:"2px solid gray", width:"150px", display:"inline-block", fontSize:"35px", fontWeight:"bolder",color:"#08bd86"}}/>
-                  
-                </div>
-                <div></div>
-                <button className="long-button" id="confirmButton" onClick={register} disabled>
-                    
-                    CONFIRM
-                 
-                    </button>
-            </div>
-        </Container>
-        </div>
-    );
+					<div className="plate-l" onClick={connectWalletHandler}>
+						<div style={{ height: "230px" }}>
+							<img src={MetamaskLogo} display="block" height="200" />
+						</div>
+
+						<div className="plate-title-holder">
+							<p className="plate-title-s">CONNECT METAMASK</p>
+						</div>
+					</div>
+					<div></div>
+					<div className="plate" style={{ width: "350px" }}>
+
+						<p className="plate-title-s">REFERRAL</p>
+
+						<input id="referralIdInput" type="number" className="someclass" placeHolder="ID" style={{ textAlign: "center", borderRadius: "0px", borderTop: "none", borderLeft: "none", borderRight: "none", caretColor: "black", borderBottom: "2px solid gray", width: "150px", display: "inline-block", fontSize: "35px", fontWeight: "bolder", color: "#08bd86" }} />
+
+					</div>
+					<div></div>
+					<button className="long-button" id="confirmButton" onClick={registerUser}>
+
+						CONFIRM
+
+					</button>
+				</div>
+			</Container>
+		</div>
+	);
 }
 
 export default Setup;
